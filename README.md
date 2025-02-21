@@ -90,7 +90,7 @@ All the libraries are included in the Poetry project config file (_pyproject.tom
         In case of error with the .lock file, just execute _poetry lock_ to fix it.
     - Create the kernel with this command (You must choose this kernel when running the notebooks):
         ```bash
-        poetry run python -m ipykernel install --user --name workshop-001 --display-name "Python (workshop-001)"
+        poetry run python -m ipykernel install --user --name project_etl --display-name "Python (project_etl)"
         ```
 
 4. **PostgreSQL Database**
