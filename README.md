@@ -25,18 +25,18 @@ The dataset is sourced from [LinkedIn Job Postings on Kaggle](https://www.kaggle
   - `formatted_experience_level`: Experience level (e.g., Entry; VARCHAR, nullable).
   - `listed_time`, `expiry`: Unix timestamps (BIGINT).
 
-- **`job_details/benefits.csv`**:
+- **`jobs/benefits.csv`**:
   - `job_id`: Links to `job_postings.csv` (BIGINT).
   - `type`: Benefit type (e.g., Pension Scheme; VARCHAR).
   - `inferred`: Whether inferred by LinkedIn (BOOLEAN).
 
-- **`company_details/companies.csv`**:
+- **`companies/companies.csv`**:
   - `company_id`: Unique company identifier (BIGINT).
   - `name`: Company name (VARCHAR).
   - `company_size`: Size grouping (0-7; INT, nullable).
   - `country`: Headquarters country (VARCHAR).
 
-- **`company_details/employee_counts.csv`**:
+- **`companies/employee_counts.csv`**:
   - `company_id`: Links to `companies.csv` (BIGINT).
   - `employee_count`: Number of employees (INT).
   - `follower_count`: LinkedIn followers (INT).
