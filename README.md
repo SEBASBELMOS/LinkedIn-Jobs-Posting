@@ -23,8 +23,8 @@ The CSV contains .
 | ├── .env             | tores database credentials |
 | **notebooks/**        | Jupyter Notebooks with analysis |
 ├── 01_raw-data.ipynb    | Raw data ingestion |
-| **pdf/**              | Documentation and workshop PDFs |
-| ├── ETL Project - First delivery.pdf     | PDF with instructions for the workshop |
+| **pdf/**              | Documentation and Project PDFs |
+| ├── ETL Project - First delivery.pdf     | PDF with instructions for the Project |
 | **pyproject.toml**    | Poetry dependency management file |
 | **README.md**         | This file |
 
