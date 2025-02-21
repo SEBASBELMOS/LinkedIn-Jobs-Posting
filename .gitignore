@@ -3,3 +3,5 @@ data
 pdf/weekly
 
 env/
+
+poetry.lock
