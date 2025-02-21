@@ -58,7 +58,7 @@ The dataset is sourced from [LinkedIn Job Postings on Kaggle](https://www.kaggle
 | ├── `02_clean_transform.ipynb` | Data cleaning and transformation          |
 | ├── `03_visualisation.ipynb` | Metrics visualisation                       |
 | **pdf/**                     | Project documentation PDFs                   |
-| ├── `ETL Project - First delivery.pdf` | Instructions for the project               |
+| ├── `ETL Project - First delivery.pdf` | Instructions for the project       |
 | **pyproject.toml**           | Poetry dependency management file            |
 | **README.md**                | This file                                    |
 
@@ -115,7 +115,7 @@ Dependencies are managed in `pyproject.toml`.
     - Then, execute _poetry init_, it will create a file called _pyproject.toml_
     - To add all the dependencies, execute this: 
         ```bash
-        poetry add pandas matplotlib mysql-connector-python sqlalchemy python-dotenv seaborn ipykernel dotenv kagglehub
+        poetry add pandas matplotlib mysql-connector-python sqlalchemy python-dotenv seaborn ipykernel dotenv kagglehub pymysql
         ```
     - Install the dependencies with: 
         ```bash
