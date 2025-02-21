@@ -53,7 +53,7 @@ All the libraries are included in the Poetry project config file (_pyproject.tom
             ```powershell
             (Invoke-WebRequest -Uri https://install.python-poetry.org -UseBasicParsing).Content | py -
             ```
-            <img src="https://github.com/SEBASBELMOS/workshop-001/blob/main/assets/poetry_installation.png" width="600"/>
+            <img src="https://github.com/SEBASBELMOS/project_etl/blob/main/assets/poetry_installation.png" width="600"/>
         - Press Win + R, type _sysdm.cpl_, and press **Enter**. 
         - Go to the _Advanced_ tab, select _environment variable_.
         - Under System variables, select Path → Click Edit.
@@ -66,7 +66,7 @@ All the libraries are included in the Poetry project config file (_pyproject.tom
             ```bash
             curl -sSL https://install.python-poetry.org | python3 -
             ```
-            <img src="https://github.com/SEBASBELMOS/workshop-001/blob/main/assets/poetry_linux.png" width="600"/>
+            <img src="https://github.com/SEBASBELMOS/project_etl/blob/main/assets/poetry_linux.png" width="600"/>
         -  Now, execute:
             ```bash
             export PATH = "/home/user/.locar/bin:$PATH"
@@ -74,7 +74,7 @@ All the libraries are included in the Poetry project config file (_pyproject.tom
         -Finally, restart the terminal and execute _poetry --version_.
 
 
-        <img src="https://github.com/SEBASBELMOS/workshop-001/blob/main/assets/poetry_linux_installed.png" width="400"/>
+        <img src="https://github.com/SEBASBELMOS/project_etl/blob/main/assets/poetry_linux_installed.png" width="400"/>
 
 3. **Poetry Shell**
     - Enter the Poetry shell with _poetry shell_.
