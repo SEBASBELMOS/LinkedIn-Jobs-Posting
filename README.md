@@ -115,7 +115,7 @@ Dependencies are managed in `pyproject.toml`.
     - Then, execute _poetry init_, it will create a file called _pyproject.toml_
     - To add all the dependencies, execute this: 
         ```bash
-        poetry add pandas matplotlib mysql-connector-python sqlalchemy python-dotenv seaborn ipykernel dotenv kagglehub pymysql
+        poetry add pandas matplotlib psycopg2-binary sqlalchemy python-dotenv seaborn ipykernel dotenv
         ```
     - Install the dependencies with: 
         ```bash
@@ -127,11 +127,12 @@ Dependencies are managed in `pyproject.toml`.
         poetry run python -m ipykernel install --user --name project_etl --display-name "Python (project_etl)"
         ```
 
-4. **MySQL Database**
-    - Install MySQL with this [link here](https://dev.mysql.com/downloads/installer/)
-    - Open a terminal and execute this command, If the user has a password, you will be prompted to enter it: 
+
+4. **PostgreSQL Database**
+    - Install PostgreSQL with this [link here](https://www.postgresql.org/download/)
+    - Open a terminal and execute this command, If the **postgres** user has a password, you will be prompted to enter it: 
         ```bash
-        mysql -u username -p
+        psql -U postgres
         ```
     - Create a new database with this command:
         ```bash 
@@ -146,18 +147,19 @@ Dependencies are managed in `pyproject.toml`.
     1. Inside the cloned repository, create a new directory named *env/*.
     2. Within that directory, create a file called *.env*.
     3. In the *.env file*, define the following six environment variables (without double quotes around values):
-        ```bash
+        ```python
         PG_HOST = #host address, e.g. localhost or 127.0.0.1
-        PG_PORT = #MySQL port, e.g. 3306
+        PG_PORT = #PostgreSQL port, e.g. 5432
 
-        PG_USER = #your MySQL user
+        PG_USER = #your PostgreSQL user
         PG_PASSWORD = #your user password
         
-        PG_DRIVER = mysql+mysqlconnector
-        PG_DATABASE = #your database name, e.g. mysql
+        PG_DRIVER = postgresql+psycopg2
+        PG_DATABASE = #your database name, e.g. postgres
         ```
 
 ---
+
 
 ## Running the Project
 
