@@ -144,6 +144,27 @@ Dependencies are managed in `pyproject.toml`.
         - **Public Accessibility**: Set to "Yes" to allow external connections.
         - **VPC Security Group**: Ensure it allows inbound traffic on port `5432` (TCP) from `0.0.0.0/0` for public access.
         - Click "Create database" and wait for the instance to launch (~5-10 minutes).
+    4. After updating the `.env` file, execute the notebook #1.
+        Host: Instance Endpoint.
+        Port: 5432.
+        Database: database_name.
+        Username: postgres (or any other user created).
+        Password: Set during project creation (e.g., password).
+
+    Supabase provides a managed PostgreSQL database, and this is how you create and connect to it.
+
+    1. Go to Supabase.com and sign up or log in.
+    2. Create a new project, set a password and choose a region close to you.
+    3. Open _SQL Editor_, and create a database with:
+        ```sql
+        CREATE DATABASE "database_name";
+        ```
+    4. After updating the `.env` file with the credentials, execute the notebook #1.
+        Host: <project-ref>.supabase.co.
+        Port: 5432.
+        Database: database_name.
+        Username: postgres (or any other user created).
+        Password: Set during project creation (e.g., password).
 
 4. **Enviromental variables**
     >Realise this in VS Code.
