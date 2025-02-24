@@ -3,7 +3,7 @@
 ## Overview 
 This project simulates a real-world exercise for a Data Engineer role interview. The objectives are:
 
-- Migrate data from CSV files into a relational database (MySQL).
+- Migrate data from CSV files into a relational database (PostgreSQL - AWS RDS).
 - Clean and transform data based on defined criteria.
 - Visualise metrics using Python libraries to create insightful charts.
 
@@ -50,7 +50,7 @@ The dataset is sourced from [LinkedIn Job Postings on Kaggle](https://www.kaggle
 | **assets/**                  | Static resources (charts, images, etc.)      |
 | **functions/**               | Utility functions                            |
 | ├── **db_connection/**       | Database connection module                   |
-| │   ├── `db_connection.py`   | Connects to MySQL using SQLAlchemy           |
+| │   ├── `db_connection.py`   | Connects to AWS RDS (Postgres DB) using SQLAlchemy           |
 | **env/**                     | Environment variables (in `.gitignore`)      |
 | ├── `.env`                   | Stores database credentials                  |
 | **notebooks/**               | Jupyter Notebooks for ETL                    |
@@ -66,7 +66,7 @@ The dataset is sourced from [LinkedIn Job Postings on Kaggle](https://www.kaggle
 
 - **Programming Language:** Python 3.13.1 -> [Download](https://www.python.org/downloads/)
 - **Data Handling:** pandas -> [Docs](https://pandas.pydata.org/)
-- **Database:** MySQL -> [Download](https://dev.mysql.com/downloads/installer/)
+- **Database:** AWS RDS Free Tier (PostgreSQL) -> [Open here](https://aws.amazon.com/rds/free/)
 - **Database Interaction:** SQLAlchemy with PyMySQL -> [SQLAlchemy Docs](https://docs.sqlalchemy.org/), [PyMySQL Docs](https://pymysql.readthedocs.io/)
 - **Visualisation:** Power BI Desktop -> [Download](https://www.microsoft.com/es-es/power-platform/products/power-bi/desktop)
 - **Environment:** Jupyter Notebook -> [VSCode tool used](https://code.visualstudio.com/docs/datascience/jupyter-notebooks)
@@ -127,20 +127,25 @@ Dependencies are managed in `pyproject.toml`.
         poetry run python -m ipykernel install --user --name project_etl --display-name "Python (project_etl)"
         ```
 
+5. **AWS RDS Free Tier / Supabase**
+    We decided to use AWS RDS instead of Supabase because this was an amazing skill to add to our portfolios and it provides wider options when it comes to storage and availability.
+    
+    Amazon RDS (Relational Database Service) hosts our database, running PostgreSQL 16.3, with a size of approximately 449 MB (originally 414 MB locally). Follow these steps to create and connect to it.
+    
+    1. Go to [AWS Management Console](https://aws.amazon.com/console/) and sign in with your AWS account credentials.
+    2. When logged in, click "Services" > "RDS" under the "Database" section.
+    3. Create a new instance
+        - **Engine**: Select "PostgreSQL".
+        - **Version**: Choose "16.3" (or the closest available version).
+        - **DB Instance Size**: Select "db.t3.micro" (1 vCPU, 1 GB RAM).
+        - **DB Instance Identifier**: Enter `database_name`.
+        - **Master Username**: `postgres` (or any username you want).
+        - **Master Password**: `password` (or a secure password, ensuring you update `.env` accordingly).
+        - **Public Accessibility**: Set to "Yes" to allow external connections.
+        - **VPC Security Group**: Ensure it allows inbound traffic on port `5432` (TCP) from `0.0.0.0/0` for public access.
+        - Click "Create database" and wait for the instance to launch (~5-10 minutes).
 
-4. **PostgreSQL Database**
-    - Install PostgreSQL with this [link here](https://www.postgresql.org/download/)
-    - Open a terminal and execute this command, If the **postgres** user has a password, you will be prompted to enter it: 
-        ```bash
-        psql -U postgres
-        ```
-    - Create a new database with this command:
-        ```bash 
-        CREATE DATABASE database_name;
-        ```
-    - This is the information you need to add to the _.env_ file in the next step.
-
-5. **Enviromental variables**
+4. **Enviromental variables**
     >Realise this in VS Code.
 
     To establish a connection with the database, we use a module called _connection.py_. This Python script retrieves a file containing our environment variables. Here’s how to create it:
@@ -158,21 +163,23 @@ Dependencies are managed in `pyproject.toml`.
         PG_DATABASE = #your database name, e.g. postgres
         ```
 
+
 ---
 
 
 ## Running the Project
 
-1. **Ingest Raw Data:**
+1. **Ingest Raw Data (notebooks\01_raw-data.ipynb):**
+    > 🚧 Run this notebook only once to migrate the data to your DB (It will take a few minutes)
     - Open `notebooks/01_raw-data.ipynb`in VS Code.
     - Select the Python (*project_etl*) kernel.
     - Run to download the dataset and load it into MySQL.
 
-2. **Clean and Transform:**
+2. **Clean and Transform (notebooks\02_clean_transform.ipynb):**
     - Open `notebooks/02_clean_transform.ipynb`.
     - Clean missing values and transform timestamps/salaries.
 
-3. **Visualise Metrics:**
+3. **Visualise Metrics (notebooks\03_visualisation.ipynb):**
     - Open `notebooks/03_visualisation.ipynb`.
     - Generate charts.
 
@@ -188,7 +195,7 @@ Created by:
 
 **Gabriel Edwards**. [LinkedIn](https://www.linkedin.com/in/gabriel-martinez-a12068267/) / [GitHub](https://github.com/XGabrielEdwardsX)
 
-**Dillian Madroñero**. [LinkedIn]() / [GitHub]()
+**Dilian Madroñero**. [LinkedIn]() / [GitHub]()
 
 Connect with us for feedback, suggestions, or collaboration opportunities!
 
