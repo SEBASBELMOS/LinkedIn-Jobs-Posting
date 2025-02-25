@@ -77,7 +77,7 @@ Dependencies are managed in `pyproject.toml`.
 
 1. **Clone the Repository:**
    ```bash
-   git clone hhttps://github.com/SEBASBELMOS/project_etl.git
+   git clone https://github.com/SEBASBELMOS/project_etl.git
    cd project_etl
    ````
 
