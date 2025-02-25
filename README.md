@@ -111,7 +111,7 @@ Dependencies are managed in `pyproject.toml`.
         <img src="https://github.com/SEBASBELMOS/project_etl/blob/main/assets/poetry_linux_installed.png" width="400"/>
 
 3. **Poetry Shell**
-    - Enter the Poetry shell with _poetry shell_.
+    - Enter the Poetry shell in VSCode with _poetry shell_.
     - Then, execute _poetry init_, it will create a file called _pyproject.toml_
     - To add all the dependencies, execute this: 
         ```bash
