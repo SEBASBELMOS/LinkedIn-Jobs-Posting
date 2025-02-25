@@ -5,3 +5,5 @@ pdf/weekly
 env/
 
 poetry.lock
+
+pbi/
