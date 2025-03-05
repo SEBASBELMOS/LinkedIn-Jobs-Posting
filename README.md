@@ -191,7 +191,7 @@ Dependencies are managed in `pyproject.toml`.
 
 ## Workflow
 
-<img src="https://github.com/SEBASBELMOS/LinkedIn-Jobs-Posting/blob/main/assets/etl_pipeline.png" width="400"/>
+<img src="https://github.com/SEBASBELMOS/LinkedIn-Jobs-Posting/blob/main/assets/etl_pipeline.png" width="600"/>
 
 ### Notebooks
 
