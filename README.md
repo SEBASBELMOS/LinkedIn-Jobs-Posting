@@ -50,13 +50,15 @@ The dataset is sourced from [LinkedIn Job Postings on Kaggle](https://www.kaggle
 | **assets/**                  | Static resources (charts, images, etc.)      |
 | **functions/**               | Utility functions                            |
 | ├── **db_connection/**       | Database connection module                   |
-| │   ├── `db_connection.py`   | Connects to AWS RDS (Postgres DB) using SQLAlchemy           |
+| │   ├── `connection.py`   | Connects to AWS RDS (Postgres DB) using SQLAlchemy           |
+| │   ├── `clean_connection.py`   | Connects to AWS RDS (Postgres DB) using SQLAlchemy - Clean DB          |
 | **env/**                     | Environment variables (in `.gitignore`)      |
 | ├── `.env`                   | Stores database credentials                  |
+| ├── `linkedin_postings_clean_.env`                   | Stores cleaned database credentials                  |
 | **notebooks/**               | Jupyter Notebooks for ETL                    |
 | ├── `01_raw-data.ipynb`      | Raw data ingestion                           |
-| ├── `02_clean_transform.ipynb` | Data cleaning and transformation          |
-| ├── `03_visualisation.ipynb` | Metrics visualisation                       |
+| ├── `02_read_data.ipynb` |     Exploratory Data Analysis (EDA)      |
+| ├── `03_clean_transform.ipynb` | Data cleaning and transformation                       |
 | **pdf/**                     | Project documentation PDFs                   |
 | ├── `ETL Project - First delivery.pdf` | Instructions for the project       |
 | **pyproject.toml**           | Poetry dependency management file            |
@@ -77,7 +79,7 @@ Dependencies are managed in `pyproject.toml`.
 
 1. **Clone the Repository:**
    ```bash
-   git clone https://github.com/SEBASBELMOS/project_etl.git
+   git clone https://github.com/SEBASBELMOS/LinkedIn-Jobs-Posting.git
    cd project_etl
    ````
 
@@ -87,7 +89,7 @@ Dependencies are managed in `pyproject.toml`.
             ```powershell
             (Invoke-WebRequest -Uri https://install.python-poetry.org -UseBasicParsing).Content | py -
             ```
-            <img src="https://github.com/SEBASBELMOS/project_etl/blob/main/assets/poetry_installation.png" width="600"/>
+            <img src="https://github.com/SEBASBELMOS/LinkedIn-Jobs-Posting/blob/main/assets/poetry_installation.png" width="600"/>
         - Press Win + R, type _sysdm.cpl_, and press **Enter**. 
         - Go to the _Advanced_ tab, select _environment variable_.
         - Under System variables, select Path → Click Edit.
@@ -100,7 +102,7 @@ Dependencies are managed in `pyproject.toml`.
             ```bash
             curl -sSL https://install.python-poetry.org | python3 -
             ```
-            <img src="https://github.com/SEBASBELMOS/project_etl/blob/main/assets/poetry_linux.png" width="600"/>
+            <img src="https://github.com/SEBASBELMOS/LinkedIn-Jobs-Posting/blob/main/assets/poetry_linux.png" width="600"/>
         -  Now, execute:
             ```bash
             export PATH = "/home/user/.locar/bin:$PATH"
@@ -108,7 +110,7 @@ Dependencies are managed in `pyproject.toml`.
         -Finally, restart the terminal and execute _poetry --version_.
 
 
-        <img src="https://github.com/SEBASBELMOS/project_etl/blob/main/assets/poetry_linux_installed.png" width="400"/>
+        <img src="https://github.com/SEBASBELMOS/LinkedIn-Jobs-Posting/blob/main/assets/poetry_linux_installed.png" width="400"/>
 
 3. **Poetry Shell**
     - Enter the Poetry shell in VSCode with _poetry shell_.
@@ -124,7 +126,7 @@ Dependencies are managed in `pyproject.toml`.
         In case of error with the .lock file, just execute _poetry lock_ to fix it.
     - Create the kernel with this command (You must choose this kernel when running the notebooks):
         ```bash
-        poetry run python -m ipykernel install --user --name project_etl --display-name "Python (project_etl)"
+        poetry run python -m ipykernel install --user --name project_etl --display-name "linkedin_postings_etl"
         ```
 
 5. **AWS RDS Free Tier / Supabase**
@@ -169,7 +171,7 @@ Dependencies are managed in `pyproject.toml`.
 4. **Enviromental variables**
     >Realise this in VS Code.
 
-    To establish a connection with the database, we use a module called _connection.py_. This Python script retrieves a file containing our environment variables. Here’s how to create it:
+    To establish a connection with the database, we use a module called _connection.py_ and _clean\_connection_. These Python scripts retrieves a file containing our environment variables. Here’s how to create it:
     1. Inside the cloned repository, create a new directory named *env/*.
     2. Within that directory, create a file called *.env*.
     3. In the *.env file*, define the following six environment variables (without double quotes around values):
@@ -187,36 +189,61 @@ Dependencies are managed in `pyproject.toml`.
 
 ---
 
+## Workflow
 
-## Running the Project
+<img src="https://github.com/SEBASBELMOS/LinkedIn-Jobs-Posting/blob/main/assets/etl_pipeline.png" width="400"/>
+
+### Notebooks
 
 1. **Ingest Raw Data (notebooks\01_raw-data.ipynb):**
-    > 🚧 Run this notebook only once to migrate the data to your DB (It will take a few minutes)
+    > 🚧 Note: Run this notebook only once, as it migrates all the data to your database.
     - Open `notebooks/01_raw-data.ipynb`in VS Code.
-    - Select the Python (*project_etl*) kernel.
-    - Run to download the dataset and load it into MySQL.
+    - Select the Python kernel.
+    - Run to download the dataset and load it into PostgreSQL.
 
-2. **Clean and Transform (notebooks\02_clean_transform.ipynb):**
-    - Open `notebooks/02_clean_transform.ipynb`.
-    - Clean missing values and transform timestamps/salaries.
+2. ** Read data and Exploratory Data Analysis (notebooks\02_read_data.ipynb):**
+    - Open `notebooks/02_read_data.ipynb`.
+    - Explore the Data:
+        - Review the structure, data types, and sample entries.
+        - Identify and document missing values and inconsistencies.
+        - Generate summary statistics and visualise distributions.
+        - Use the insights from this analysis to inform the cleaning and transformation steps in subsequent notebooks.
 
-3. **Visualise Metrics (notebooks\03_visualisation.ipynb):**
-    - Open `notebooks/03_visualisation.ipynb`.
-    - Generate charts.
+3. **Clean and Transform (notebooks\03_clean_transform.ipynb):**
+    - Open `notebooks/03_clean_transform.ipynb`.
+    - Perform data cleaning, handle missing values, and transform timestamps/salaries.
+    - Load clean data into a new DB in PostgreSQL.
 
 ---
 
+## Power BI Connection (Not necessary)
+1. Open Power BI Desktop and create a new dashboard. 
+2. Select the _Get data_ option, then choose the "_PostgreSQL Database_" option.
+
+    <img src="https://github.com/SEBASBELMOS/LinkedIn-Jobs-Posting/blob/main/assets/pbi.png" width="400"/>
+
+3. Insert the _PostgreSQL Server_ and _Database Name_.
+    
+    <img src="https://github.com/SEBASBELMOS/LinkedIn-Jobs-Posting/blob/main/assets/postgres_pbi.png" width="400"/>
+
+4. Fill the following fields with your Postgres credentials.
+    
+    <img src="https://github.com/SEBASBELMOS/LinkedIn-Jobs-Posting/blob/main/assets/postrgres_access_pbi.png" width="400"/>    
+
+5. After establishing the connection, these tables will be displayed.You need to select the "_candidates_hired_" table, and then you can start creating your own dashboards.
+    
+    <img src="https://github.com/SEBASBELMOS/LinkedIn-Jobs-Posting/blob/main/assets/tables.png" width="200"/>
+
+- Open my Power BI Visualisation [here](https://app.powerbi.com/view?r=eyJrIjoiYzVmMGFjYTktNzE2Ni00MWNhLWE2ODktOWMwZTY2OTdiMGU5IiwidCI6IjY5M2NiZWEwLTRlZjktNDI1NC04OTc3LTc2ZTA1Y2I1ZjU1NiIsImMiOjR9)
 
 ---
 
 ## **Authors**  
 Created by:
 
-**Sebastian Belalcazar Mosquera**. [LinkedIn](https://www.linkedin.com/in/sebasbelmos/) / [GitHub](https://github.com/SEBASBELMOS)
+**Sebastian Belalcazar**. [LinkedIn](https://www.linkedin.com/in/sebasbelmos/) / [GitHub](https://github.com/SEBASBELMOS)
 
 **Gabriel Edwards**. [LinkedIn](https://www.linkedin.com/in/gabriel-martinez-a12068267/) / [GitHub](https://github.com/XGabrielEdwardsX)
-
-**Dilian Madroñero**. [LinkedIn]() / [GitHub]()
 
 Connect with us for feedback, suggestions, or collaboration opportunities!
 
