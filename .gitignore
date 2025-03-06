@@ -7,3 +7,5 @@ env/
 poetry.lock
 
 pbi/
+
+functions\db_connection\__pycache__
