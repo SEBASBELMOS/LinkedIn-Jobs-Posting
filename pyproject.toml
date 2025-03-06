@@ -1,9 +1,9 @@
 [project]
-name = "project-etl"
+name = "project_etl"
 version = "0.1.0"
 description = ""
 authors = [
-    {name = "SEBASBELMOS",email = "sebasbelmosxd@gmail.com"}
+    {name = "XGabrielEdwardsX",email = "gabriel.dev.edwards@gmail.com"}
 ]
 readme = "README.md"
 requires-python = ">=3.13"
@@ -16,11 +16,12 @@ dependencies = [
     "seaborn (>=0.13.2,<0.14.0)",
     "ipykernel (>=6.29.5,<7.0.0)",
     "dotenv (>=0.9.9,<0.10.0)",
-    "kagglehub (>=0.3.9,<0.4.0)",
+    "kagglehub (>=0.3.10,<0.4.0)"
 ]
 
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
+
 package-mode = false
