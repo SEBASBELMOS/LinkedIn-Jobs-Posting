@@ -234,7 +234,7 @@ Dependencies are managed in `pyproject.toml`.
     
     <img src="https://github.com/SEBASBELMOS/LinkedIn-Jobs-Posting/blob/main/assets/tables.png" width="200"/>
 
-- Open my Power BI Visualisation [here](https://app.powerbi.com/view?r=eyJrIjoiYzVmMGFjYTktNzE2Ni00MWNhLWE2ODktOWMwZTY2OTdiMGU5IiwidCI6IjY5M2NiZWEwLTRlZjktNDI1NC04OTc3LTc2ZTA1Y2I1ZjU1NiIsImMiOjR9)
+- Open the Power BI Visualisation [here](https://app.powerbi.com/view?r=eyJrIjoiMzk3ZTA5YzEtYjkwNS00N2FjLWE5NDEtMmMzOWZkZTEzN2RkIiwidCI6IjY5M2NiZWEwLTRlZjktNDI1NC04OTc3LTc2ZTA1Y2I1ZjU1NiIsImMiOjR9)
 
 ---
 
