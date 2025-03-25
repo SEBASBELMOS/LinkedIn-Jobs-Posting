@@ -169,7 +169,7 @@ Dependencies are managed in `pyproject.toml`.
         Password: Set during project creation (e.g., password).
 
 4. **Database Google Cloud Platform in case you do not want to use Supabase or AWS RDS**
-    > To create the databases in GCP, you can follow this [guide](https://github.com/SEBASBELMOS/workshop-002/blob/main/docs/guides/google_cloud_config.md)
+    > To create the databases in GCP, you can follow this [guide](https://github.com/SEBASBELMOS/LinkedIn-Jobs-Posting/blob/main/docs/guides/google_cloud_config.md)
 
     - Use the `public IP` for connections, and ensure the IP `0.0.0.0/0` is added to authorised networks for testing.
 
