@@ -168,7 +168,12 @@ Dependencies are managed in `pyproject.toml`.
         Username: postgres (or any other user created).
         Password: Set during project creation (e.g., password).
 
-4. **Enviromental variables**
+4. **Database Google Cloud Platform in case you do not want to use Supabase or AWS RDS**
+    > To create the databases in GCP, you can follow this [guide](https://github.com/SEBASBELMOS/workshop-002/blob/main/docs/guides/google_cloud_config.md)
+
+    - Use the `public IP` for connections, and ensure the IP `0.0.0.0/0` is added to authorised networks for testing.
+
+5. **Enviromental variables**
     >Realise this in VS Code.
 
     To establish a connection with the database, we use a module called _connection.py_ and _clean\_connection_. These Python scripts retrieves a file containing our environment variables. Here’s how to create it:
