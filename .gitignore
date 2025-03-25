@@ -8,4 +8,12 @@ poetry.lock
 
 pbi/
 
-functions\db_connection\__pycache__
+
+# Airflow
+airflow*.*
+logs/
+standalone_admin_password.txt
+webserver_config.py
+
+__pycache__/
+venv/
