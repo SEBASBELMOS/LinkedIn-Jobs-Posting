@@ -1,3 +1,9 @@
+import sys
+import os
+
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
+sys.path.append(project_root)
+
 import logging
 from sqlalchemy import text
 from sqlalchemy.exc import SQLAlchemyError
