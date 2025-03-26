@@ -1,5 +1,4 @@
-from database.db_connection import creating_engine, disposing_engine
-
+from src.database.db_connection import creating_engine, disposing_engine
 import pandas as pd
 import logging
 
@@ -9,19 +8,46 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s %(message)s", datefm
 
 def extracting_db_data():
     """
-    Extracting data from the LJP table and return it as a DataFrame.   
+    Extract data from the raw schema of the project-etl database and return it as a dictionary of DataFrames.
 
+    Returns:
+        dict: A dictionary where keys are table names and values are the corresponding DataFrames.
     """
     engine = creating_engine()
     
+    tables = [
+        'jobs',
+        'salaries',
+        'benefits',
+        'employee_counts',
+        'industries',
+        'skills_industries',
+        'companies'
+    ]
+    
+    dataframes = {}
+    
     try:
-        logging.info("Starting to extract the data from the Linkedin Job Postings table.")
-        df = pd.read_sql_table("linkedin-postings-clean", engine)
-        logging.info("Data extracted from the Linkedin Job Postings table.")
+        logging.info("Starting to extract data from the raw schema of the project-etl database.")
         
-        return df
+        for table in tables:
+            try:
+                logging.info(f"Extracting data from raw.{table} table.")
+                df = pd.read_sql(f"SELECT * FROM raw.{table}", con=engine)
+                dataframes[table] = df
+                logging.info(f"Successfully extracted {len(df)} rows from raw.{table} table.")
+            except Exception as e:
+                logging.error(f"Error extracting data from raw.{table} table: {str(e)}")
+                raise
+        
+        logging.info("Data extraction from raw schema completed successfully.")
+        return dataframes
+    
     except Exception as e:
-        logging.error(f"Error extracting data from the Linkedin Job Postings table: {e}.")
+        logging.error(f"Error during data extraction from raw schema: {str(e)}")
+        raise
+    
     finally:
-        disposing_engine(engine)
+        engine.dispose()
+        logging.info("Database engine disposed and connections closed.")
         
