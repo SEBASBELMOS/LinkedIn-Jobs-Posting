@@ -1,38 +1,35 @@
 import logging
-from sqlalchemy import create_engine, text
+from sqlalchemy import text
 from sqlalchemy.exc import SQLAlchemyError
-from database.db_connection import creating_engine
+from src.database.db_connection import create_gcp_engine
 
-
+#Logging for Airflow
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-def load_to_dwh(dataframes_to_load, schema='public'):
+def load_to_dwh(dataframes_to_load, schema='cleaned'):
     """
-    Load transformed DataFrames into the linkedin-postings-clean database.
+    Load transformed DataFrames into the 'cleaned' schema in the GCP database.
     
     Args:
         dataframes_to_load (dict): Dictionary of table names and DataFrames to load.
-        schema (str): Database schema to load into (default: 'public').
+        schema (str): Database schema to load into (default: 'cleaned').
     """
-    # Create database engine
+    #Create database engine
     try:
-        clean_engine = creating_engine()
-        logger.info("Successfully created clean_engine for linkedin-postings-clean")
+        gcp_engine = create_gcp_engine()
+        logger.info("Successfully created GCP engine for linkedin-postings-clean")
     except Exception as e:
-        logger.error(f"Failed to create clean_engine: {str(e)}")
+        logger.error(f"Failed to create GCP engine: {str(e)}")
         raise
 
-
+    #Load each DataFrame into the database
     for table_name, df in dataframes_to_load.items():
         try:
-            with clean_engine.begin() as connection:
+            with gcp_engine.begin() as connection:
                 logger.info(f"Loading {table_name} with {len(df)} rows and columns: {list(df.columns)}")
-                
-
                 df.to_sql(table_name, connection, schema=schema, if_exists='replace', index=False)
-                logger.info(f"Successfully loaded {table_name} into linkedin-postings-clean")
-
+                logger.info(f"Successfully loaded {table_name} into GCP '{schema}' schema")
 
                 result = connection.execute(text(f"SELECT * FROM {schema}.{table_name} LIMIT 1"))
                 sample_row = result.fetchone()
@@ -42,17 +39,16 @@ def load_to_dwh(dataframes_to_load, schema='public'):
                     logger.warning(f"Validation: No data found in {table_name} after upload")
 
         except SQLAlchemyError as e:
-            logger.error(f"Error loading {table_name} to linkedin-postings-clean: {str(e)}")
+            logger.error(f"Error loading {table_name} to GCP: {str(e)}")
             raise
 
-
-    with clean_engine.connect() as connection:
+    #Verify row counts
+    with gcp_engine.connect() as connection:
         for table_name in dataframes_to_load.keys():
             try:
                 result = connection.execute(text(f"SELECT COUNT(*) FROM {schema}.{table_name}"))
                 row_count = result.fetchone()[0]
-                logger.info(f"Table {table_name} in linkedin-postings-clean has {row_count} rows")
-                
+                logger.info(f"Table {table_name} in GCP '{schema}' schema has {row_count} rows")
 
                 existence_check = connection.execute(
                     text(f"SELECT EXISTS (SELECT FROM pg_tables WHERE schemaname = :schema AND tablename = :name)"),
@@ -68,14 +64,11 @@ def load_to_dwh(dataframes_to_load, schema='public'):
                 logger.error(f"Error verifying {table_name}: {str(e)}")
                 raise
 
-    
-    clean_engine.dispose()
-    logger.info("Closed connection to linkedin-postings-clean database.")
+    gcp_engine.dispose()
+    logger.info("Closed connection to GCP database.")
 
 if __name__ == "__main__":
-
     import pandas as pd
     sample_df = pd.DataFrame({'col1': [1, 2, 3], 'col2': ['a', 'b', 'c']})
     dataframes_to_load = {'test_table': sample_df}
     load_to_dwh(dataframes_to_load)
-    
