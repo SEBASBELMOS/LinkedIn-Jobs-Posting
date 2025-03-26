@@ -1,8 +1,19 @@
-from src.database.db_connection import creating_engine, disposing_engine
+import sys
+import os
+
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
+sys.path.append(project_root)
+
+from src.database.db_connection import create_gcp_engine
 import pandas as pd
 import logging
 
-logging.basicConfig(level=logging.INFO, format="%(asctime)s %(message)s", datefmt="%d/%m/%Y %I:%M:%S %p")
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s %(message)s",
+    datefmt="%d/%m/%Y %I:%M:%S %p"
+)
 
 ## ----- DB Extract ----- ##
 
@@ -13,7 +24,7 @@ def extracting_db_data():
     Returns:
         dict: A dictionary where keys are table names and values are the corresponding DataFrames.
     """
-    engine = creating_engine()
+    engine = create_gcp_engine()
     
     tables = [
         'jobs',
@@ -51,3 +62,7 @@ def extracting_db_data():
         engine.dispose()
         logging.info("Database engine disposed and connections closed.")
         
+if __name__ == "__main__":
+    dataframes = extracting_db_data()
+    print("Extracted tables:", list(dataframes.keys()))
+    
