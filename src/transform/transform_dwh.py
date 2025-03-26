@@ -156,3 +156,22 @@ def transform_data(dataframes):
     
     logging.info("Data transformation completed successfully.")
     return transformed_dataframes
+
+
+if __name__ == "__main__":
+    sample_df = pd.DataFrame({
+        'job_id': [1, 2],
+        'normalised_salary': [50000, 60000],
+        'original_listed_time': [1640995200000, 1643673600000],  # Timestamps in milliseconds
+        'zip_code': ['12345', '67890'],
+        'formatted_experience_level': ['Entry', 'Mid'],
+        'company_id': [101, 102],
+        'views': [10, 20],
+        'remote_allowed': [True, False],
+        'currency': ['USD', 'GBP'],
+        'pay_period': ['YEARLY', 'MONTHLY']
+    })
+    dataframes = {'jobs': sample_df}
+    transformed_data = transform_data(dataframes)
+    for table_name, df in transformed_data.items():
+        print(f"{table_name}: {len(df)} rows")
