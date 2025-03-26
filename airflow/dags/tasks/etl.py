@@ -90,8 +90,7 @@ def load_task(df_json):
 
         load_to_dwh(dataframes)
         logging.info("load_task completed successfully.")
-
-        return df_json
+        return df_json 
     except Exception as e:
         logging.error(f"Error in load_task: {str(e)}")
         raise
@@ -114,11 +113,10 @@ def validate_task(df_json):
             table: pd.DataFrame(json.loads(df_json_str))
             for table, df_json_str in serialised_dataframes.items()
         }
-
         if 'jobs' in dataframes:
             jobs_df = dataframes['jobs']
             logging.info("Jobs Data Distribution:")
-            logging.info(jobs_df[['normalized_salary', 'original_listed_time']].describe().to_string())
+            logging.info(jobs_df[['normalised_salary', 'original_listed_time']].describe().to_string())
             logging.info("\nDate Distribution:")
             logging.info(jobs_df['original_listed_time'].value_counts().sort_index().to_string())
             logging.info(f"\nTotal unique jobs: {jobs_df['job_id'].nunique()}")
@@ -127,4 +125,3 @@ def validate_task(df_json):
     except Exception as e:
         logging.error(f"Error in validate_task: {str(e)}")
         raise
-    
