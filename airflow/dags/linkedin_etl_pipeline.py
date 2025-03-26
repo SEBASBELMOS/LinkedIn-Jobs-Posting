@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta
 from airflow.decorators import dag, task
 
-from tasks.etl import extract_task, transform_task, load_task
+from tasks.etl import extract_task, transform_task, load_task, validate_task
 
 default_args = {
     'owner': 'sebasbelmos',
@@ -23,13 +23,16 @@ default_args = {
 def linkedin_etl_pipeline():
     """
     This DAG executes the ETL pipeline for the LinkedIn Job Postings project.
-    It extracts data from the raw schema, transforms it, and loads it into the cleaned schema.
+    It extracts data from the raw schema, transforms it, loads it into the cleaned schema,
+    and validates the data distribution.
     """
 
     extracted_data = extract_task()
 
     transformed_data = transform_task(extracted_data)
 
-    load_task(transformed_data)
+    loaded_data = load_task(transformed_data)
+
+    validate_task(loaded_data)
 
 linkedin_dag = linkedin_etl_pipeline()
