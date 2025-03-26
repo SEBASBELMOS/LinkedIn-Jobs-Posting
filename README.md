@@ -129,6 +129,23 @@ Dependencies are managed in `pyproject.toml`.
         poetry run python -m ipykernel install --user --name project_etl --display-name "linkedin_postings_etl"
         ```
 
+4.  **Virtual Environment (This must be done in Ubuntu or WSL in case you do not want to use Poetry)**
+    - Create virtual environment.
+        ```bash
+        python3 -m venv venv
+        ```
+
+    - Activate it using this command:
+        ```bash
+        source venv/bin/activate 
+        ```
+
+    - Install all the requirements and libraries with this command:
+        ```bash
+        pip install -r requirements.txt 
+        ```
+
+
 5. **AWS RDS Free Tier / Supabase**
     We decided to use AWS RDS instead of Supabase because this was an amazing skill to add to our portfolios and it provides wider options when it comes to storage and availability.
     
@@ -168,7 +185,12 @@ Dependencies are managed in `pyproject.toml`.
         Username: postgres (or any other user created).
         Password: Set during project creation (e.g., password).
 
-4. **Enviromental variables**
+6. **Database Google Cloud Platform in case you do not want to use Supabase or AWS RDS**
+    > To create the databases in GCP, you can follow this [guide](https://github.com/SEBASBELMOS/LinkedIn-Jobs-Posting/blob/main/docs/guides/google_cloud_config.md)
+
+    - Use the `public IP` for connections, and ensure the IP `0.0.0.0/0` is added to authorised networks for testing.
+
+7. **Enviromental variables**
     >Realise this in VS Code.
 
     To establish a connection with the database, we use a module called _connection.py_ and _clean\_connection_. These Python scripts retrieves a file containing our environment variables. Here’s how to create it:
@@ -213,6 +235,30 @@ Dependencies are managed in `pyproject.toml`.
     - Open `notebooks/03_clean_transform.ipynb`.
     - Perform data cleaning, handle missing values, and transform timestamps/salaries.
     - Load clean data into a new DB in PostgreSQL.
+
+---
+
+## Airflow Pipeline
+
+Before launching Apache Airflow, you need to export the `AIRFLOW_HOME` environment variable. This variable establishes the project directory in which you will be working with Airflow.
+
+```bash
+export AIRFLOW_HOME="$(pwd)/airflow"
+```
+
+Run Apache Airflow with this command:
+
+```bash
+airflow standalone
+```
+Ensure that Apache Airflow can access the modules in the `src` directory by specifying the absolute path to that folder in the `plugins_folder` setting within the `airflow.cfg` file. You might need to restart Apache Airflow if you encounter any DAG import errors.
+
+    <img src="https://github.com/SEBASBELMOS/LinkedIn-Jobs-Posting/blob/main/assets/plugins_folder_airflow.png" width="400"/>
+
+> [!IMPORTANT]
+> Open [http://localhost:8080](http://localhost:8080/) in order to open the Airflow GUI and ran the DAG.
+
+    <img src="https://github.com/SEBASBELMOS/LinkedIn-Jobs-Posting/blob/main/assets/airflow_gui.png" width="400"/>
 
 ---
 
