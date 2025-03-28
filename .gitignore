@@ -17,3 +17,5 @@ webserver_config.py
 
 __pycache__/
 venv/
+airflow-env/
+temp/

@@ -52,11 +52,11 @@ def transform_data(dataframes):
         jobs_df["job_id_modify"] = range(1, len(jobs_df) + 1)
         jobs_df["company_id_modify"] = range(1, len(jobs_df) + 1)
         
-        q1 = jobs_df["normalised_salary"].quantile(0.25)
-        q3 = jobs_df["normalised_salary"].quantile(0.75)
+        q1 = jobs_df["normalized_salary"].quantile(0.25)
+        q3 = jobs_df["normalized_salary"].quantile(0.75)
         iqr = q3 - q1
         upper_cap = q3 + 1.5 * iqr
-        jobs_df["normalised_salary"] = jobs_df["normalised_salary"].clip(upper=upper_cap)
+        jobs_df["normalized_salary"] = jobs_df["normalized_salary"].clip(upper=upper_cap)
         
         transformed_dataframes['jobs'] = jobs_df
         logging.info(f"jobs_df transformed: {len(jobs_df)} rows")
@@ -161,7 +161,7 @@ def transform_data(dataframes):
 if __name__ == "__main__":
     sample_df = pd.DataFrame({
         'job_id': [1, 2],
-        'normalised_salary': [50000, 60000],
+        'normalized_salary': [50000, 60000],
         'original_listed_time': [1640995200000, 1643673600000],  # Timestamps in milliseconds
         'zip_code': ['12345', '67890'],
         'formatted_experience_level': ['Entry', 'Mid'],
