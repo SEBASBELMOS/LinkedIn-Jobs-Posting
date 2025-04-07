@@ -119,7 +119,7 @@ def transform_data(dataframes):
         industries_df = transformed_dataframes['industries']
         logging.info("Transforming industries_df...")
         
-        industries_df["industry_name"] = industries_df["industry_name"].replace([None, pd.NA], "Unknown")
+        industries_df["industry"] = industries_df["industry"].replace([None, pd.NA], "Unknown")
         
         transformed_dataframes['industries'] = industries_df
         logging.info(f"industries_df transformed: {len(industries_df)} rows")

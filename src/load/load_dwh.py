@@ -7,9 +7,8 @@ sys.path.append(project_root)
 import logging
 from sqlalchemy import text
 from sqlalchemy.exc import SQLAlchemyError
-from src.database.db_connection import create_gcp_engine
+from src.database.db_connection import create_docker_engine
 
-#Logging for Airflow
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
@@ -21,18 +20,16 @@ def load_to_dwh(dataframes_to_load, schema='cleaned'):
         dataframes_to_load (dict): Dictionary of table names and DataFrames to load.
         schema (str): Database schema to load into (default: 'cleaned').
     """
-    #Create database engine
     try:
-        gcp_engine = create_gcp_engine()
+        docker_engine = create_docker_engine()
         logger.info("Successfully created GCP engine for linkedin-postings-clean")
     except Exception as e:
         logger.error(f"Failed to create GCP engine: {str(e)}")
         raise
 
-    #Load each DataFrame into the database
     for table_name, df in dataframes_to_load.items():
         try:
-            with gcp_engine.begin() as connection:
+            with docker_engine.begin() as connection:
                 logger.info(f"Loading {table_name} with {len(df)} rows and columns: {list(df.columns)}")
                 df.to_sql(table_name, connection, schema=schema, if_exists='replace', index=False)
                 logger.info(f"Successfully loaded {table_name} into GCP '{schema}' schema")
@@ -48,8 +45,7 @@ def load_to_dwh(dataframes_to_load, schema='cleaned'):
             logger.error(f"Error loading {table_name} to GCP: {str(e)}")
             raise
 
-    #Verify row counts
-    with gcp_engine.connect() as connection:
+    with docker_engine.connect() as connection:
         for table_name in dataframes_to_load.keys():
             try:
                 result = connection.execute(text(f"SELECT COUNT(*) FROM {schema}.{table_name}"))
@@ -70,7 +66,7 @@ def load_to_dwh(dataframes_to_load, schema='cleaned'):
                 logger.error(f"Error verifying {table_name}: {str(e)}")
                 raise
 
-    gcp_engine.dispose()
+    docker_engine.dispose()
     logger.info("Closed connection to GCP database.")
 
 if __name__ == "__main__":
