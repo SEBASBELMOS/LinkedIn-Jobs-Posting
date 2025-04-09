@@ -1,20 +1,7 @@
-data
-
 docs/pdf/weekly
-
-env/
-
-poetry.lock
-
 pbi/
-
-
 # Airflow
 airflow*.*
-logs/
-standalone_admin_password.txt
-webserver_config.py
-
 __pycache__/
 venv/
 airflow_env
