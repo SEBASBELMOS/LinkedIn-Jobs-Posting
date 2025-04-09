@@ -1,0 +1,20 @@
+[2025-04-09T07:23:21.256-0500] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-04-09T07:23:21.269-0500] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: etl_kaggle_to_postgres_conditional_load.check_if_extraction_needed manual__2025-04-09T12:23:13.289942+00:00 [queued]>
+[2025-04-09T07:23:21.278-0500] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: etl_kaggle_to_postgres_conditional_load.check_if_extraction_needed manual__2025-04-09T12:23:13.289942+00:00 [queued]>
+[2025-04-09T07:23:21.278-0500] {taskinstance.py:2867} INFO - Starting attempt 1 of 1
+[2025-04-09T07:23:21.292-0500] {taskinstance.py:2890} INFO - Executing <Task(_PythonDecoratedOperator): check_if_extraction_needed> on 2025-04-09 12:23:13.289942+00:00
+[2025-04-09T07:23:21.300-0500] {standard_task_runner.py:72} INFO - Started process 50491 to run task
+[2025-04-09T07:23:21.306-0500] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'etl_kaggle_to_postgres_conditional_load', 'check_if_extraction_needed', 'manual__2025-04-09T12:23:13.289942+00:00', '--job-id', '5', '--raw', '--subdir', 'DAGS_FOLDER/etl_process.py', '--cfg-path', '/tmp/tmpv9wjyqil']
+[2025-04-09T07:23:21.309-0500] {standard_task_runner.py:105} INFO - Job 5: Subtask check_if_extraction_needed
+[2025-04-09T07:23:21.349-0500] {task_command.py:467} INFO - Running <TaskInstance: etl_kaggle_to_postgres_conditional_load.check_if_extraction_needed manual__2025-04-09T12:23:13.289942+00:00 [running]> on host edwards-HP-Laptop-14-dk1xxx
+[2025-04-09T07:23:21.405-0500] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='etl_kaggle_to_postgres_conditional_load' AIRFLOW_CTX_TASK_ID='check_if_extraction_needed' AIRFLOW_CTX_EXECUTION_DATE='2025-04-09T12:23:13.289942+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-04-09T12:23:13.289942+00:00'
+[2025-04-09T07:23:21.407-0500] {taskinstance.py:732} INFO - ::endgroup::
+[2025-04-09T07:23:21.409-0500] {control.py:22} INFO - Starting task: check_if_extraction_needed
+[2025-04-09T07:23:21.415-0500] {base.py:84} INFO - Retrieving connection 'project_etl'
+[2025-04-09T07:23:21.452-0500] {control.py:55} INFO - All required tables exist and have data, extraction not needed
+[2025-04-09T07:23:21.453-0500] {python.py:240} INFO - Done. Returned value was: False
+[2025-04-09T07:23:21.469-0500] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-04-09T07:23:21.469-0500] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=etl_kaggle_to_postgres_conditional_load, task_id=check_if_extraction_needed, run_id=manual__2025-04-09T12:23:13.289942+00:00, execution_date=20250409T122313, start_date=20250409T122321, end_date=20250409T122321
+[2025-04-09T07:23:21.517-0500] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-04-09T07:23:21.560-0500] {taskinstance.py:3901} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2025-04-09T07:23:21.571-0500] {local_task_job_runner.py:245} INFO - ::endgroup::

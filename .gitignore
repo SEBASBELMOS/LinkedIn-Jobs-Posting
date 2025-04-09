@@ -1,7 +1,7 @@
 docs/pdf/weekly
 pbi/
 # Airflow
-airflow*.*
+airflow/
 __pycache__/
 venv/
 airflow_env

@@ -1,0 +1,57 @@
+[2025-04-09T07:21:08.796-0500] {processor.py:186} INFO - Started process (PID=48996) to work on /home/edwards/Documentos/university/etl/project_linux_repo/LinkedIn-Jobs-Posting/dags/etl_process.py
+[2025-04-09T07:21:08.798-0500] {processor.py:914} INFO - Processing file /home/edwards/Documentos/university/etl/project_linux_repo/LinkedIn-Jobs-Posting/dags/etl_process.py for tasks to queue
+[2025-04-09T07:21:08.802-0500] {logging_mixin.py:190} INFO - [2025-04-09T07:21:08.802-0500] {dagbag.py:588} INFO - Filling up the DagBag from /home/edwards/Documentos/university/etl/project_linux_repo/LinkedIn-Jobs-Posting/dags/etl_process.py
+[2025-04-09T07:21:10.342-0500] {processor.py:925} INFO - DAG(s) 'etl_kaggle_to_postgres_conditional_load' retrieved from /home/edwards/Documentos/university/etl/project_linux_repo/LinkedIn-Jobs-Posting/dags/etl_process.py
+[2025-04-09T07:21:10.587-0500] {logging_mixin.py:190} INFO - [2025-04-09T07:21:10.586-0500] {override.py:1930} INFO - Created Permission View: can read on DAG:etl_kaggle_to_postgres_conditional_load
+[2025-04-09T07:21:10.624-0500] {logging_mixin.py:190} INFO - [2025-04-09T07:21:10.623-0500] {override.py:1930} INFO - Created Permission View: can edit on DAG:etl_kaggle_to_postgres_conditional_load
+[2025-04-09T07:21:10.642-0500] {logging_mixin.py:190} INFO - [2025-04-09T07:21:10.641-0500] {override.py:1930} INFO - Created Permission View: can delete on DAG:etl_kaggle_to_postgres_conditional_load
+[2025-04-09T07:21:10.668-0500] {logging_mixin.py:190} INFO - [2025-04-09T07:21:10.667-0500] {override.py:1930} INFO - Created Permission View: menu access on DAG Run:etl_kaggle_to_postgres_conditional_load
+[2025-04-09T07:21:10.694-0500] {logging_mixin.py:190} INFO - [2025-04-09T07:21:10.694-0500] {override.py:1930} INFO - Created Permission View: can read on DAG Run:etl_kaggle_to_postgres_conditional_load
+[2025-04-09T07:21:10.711-0500] {logging_mixin.py:190} INFO - [2025-04-09T07:21:10.710-0500] {override.py:1930} INFO - Created Permission View: can create on DAG Run:etl_kaggle_to_postgres_conditional_load
+[2025-04-09T07:21:10.734-0500] {logging_mixin.py:190} INFO - [2025-04-09T07:21:10.732-0500] {override.py:1930} INFO - Created Permission View: can delete on DAG Run:etl_kaggle_to_postgres_conditional_load
+[2025-04-09T07:21:10.735-0500] {logging_mixin.py:190} INFO - [2025-04-09T07:21:10.734-0500] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-09T07:21:10.762-0500] {logging_mixin.py:190} INFO - [2025-04-09T07:21:10.761-0500] {dag.py:3262} INFO - Creating ORM DAG for etl_kaggle_to_postgres_conditional_load
+[2025-04-09T07:21:10.764-0500] {logging_mixin.py:190} INFO - [2025-04-09T07:21:10.763-0500] {dag.py:4180} INFO - Setting next_dagrun for etl_kaggle_to_postgres_conditional_load to None, run_after=None
+[2025-04-09T07:21:10.814-0500] {processor.py:208} INFO - Processing /home/edwards/Documentos/university/etl/project_linux_repo/LinkedIn-Jobs-Posting/dags/etl_process.py took 2.030 seconds
+[2025-04-09T07:21:41.680-0500] {processor.py:186} INFO - Started process (PID=49450) to work on /home/edwards/Documentos/university/etl/project_linux_repo/LinkedIn-Jobs-Posting/dags/etl_process.py
+[2025-04-09T07:21:41.683-0500] {processor.py:914} INFO - Processing file /home/edwards/Documentos/university/etl/project_linux_repo/LinkedIn-Jobs-Posting/dags/etl_process.py for tasks to queue
+[2025-04-09T07:21:41.690-0500] {logging_mixin.py:190} INFO - [2025-04-09T07:21:41.689-0500] {dagbag.py:588} INFO - Filling up the DagBag from /home/edwards/Documentos/university/etl/project_linux_repo/LinkedIn-Jobs-Posting/dags/etl_process.py
+[2025-04-09T07:21:42.358-0500] {processor.py:925} INFO - DAG(s) 'etl_kaggle_to_postgres_conditional_load' retrieved from /home/edwards/Documentos/university/etl/project_linux_repo/LinkedIn-Jobs-Posting/dags/etl_process.py
+[2025-04-09T07:21:42.378-0500] {logging_mixin.py:190} INFO - [2025-04-09T07:21:42.378-0500] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-09T07:21:42.391-0500] {logging_mixin.py:190} INFO - [2025-04-09T07:21:42.391-0500] {dag.py:4180} INFO - Setting next_dagrun for etl_kaggle_to_postgres_conditional_load to None, run_after=None
+[2025-04-09T07:21:42.419-0500] {processor.py:208} INFO - Processing /home/edwards/Documentos/university/etl/project_linux_repo/LinkedIn-Jobs-Posting/dags/etl_process.py took 0.755 seconds
+[2025-04-09T07:22:12.601-0500] {processor.py:186} INFO - Started process (PID=49860) to work on /home/edwards/Documentos/university/etl/project_linux_repo/LinkedIn-Jobs-Posting/dags/etl_process.py
+[2025-04-09T07:22:12.602-0500] {processor.py:914} INFO - Processing file /home/edwards/Documentos/university/etl/project_linux_repo/LinkedIn-Jobs-Posting/dags/etl_process.py for tasks to queue
+[2025-04-09T07:22:12.604-0500] {logging_mixin.py:190} INFO - [2025-04-09T07:22:12.604-0500] {dagbag.py:588} INFO - Filling up the DagBag from /home/edwards/Documentos/university/etl/project_linux_repo/LinkedIn-Jobs-Posting/dags/etl_process.py
+[2025-04-09T07:22:13.130-0500] {processor.py:925} INFO - DAG(s) 'etl_kaggle_to_postgres_conditional_load' retrieved from /home/edwards/Documentos/university/etl/project_linux_repo/LinkedIn-Jobs-Posting/dags/etl_process.py
+[2025-04-09T07:22:13.148-0500] {logging_mixin.py:190} INFO - [2025-04-09T07:22:13.147-0500] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-09T07:22:13.158-0500] {logging_mixin.py:190} INFO - [2025-04-09T07:22:13.158-0500] {dag.py:4180} INFO - Setting next_dagrun for etl_kaggle_to_postgres_conditional_load to None, run_after=None
+[2025-04-09T07:22:13.183-0500] {processor.py:208} INFO - Processing /home/edwards/Documentos/university/etl/project_linux_repo/LinkedIn-Jobs-Posting/dags/etl_process.py took 0.590 seconds
+[2025-04-09T07:22:43.956-0500] {processor.py:186} INFO - Started process (PID=50030) to work on /home/edwards/Documentos/university/etl/project_linux_repo/LinkedIn-Jobs-Posting/dags/etl_process.py
+[2025-04-09T07:22:43.957-0500] {processor.py:914} INFO - Processing file /home/edwards/Documentos/university/etl/project_linux_repo/LinkedIn-Jobs-Posting/dags/etl_process.py for tasks to queue
+[2025-04-09T07:22:43.959-0500] {logging_mixin.py:190} INFO - [2025-04-09T07:22:43.959-0500] {dagbag.py:588} INFO - Filling up the DagBag from /home/edwards/Documentos/university/etl/project_linux_repo/LinkedIn-Jobs-Posting/dags/etl_process.py
+[2025-04-09T07:22:44.482-0500] {processor.py:925} INFO - DAG(s) 'etl_kaggle_to_postgres_conditional_load' retrieved from /home/edwards/Documentos/university/etl/project_linux_repo/LinkedIn-Jobs-Posting/dags/etl_process.py
+[2025-04-09T07:22:44.502-0500] {logging_mixin.py:190} INFO - [2025-04-09T07:22:44.501-0500] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-09T07:22:44.513-0500] {logging_mixin.py:190} INFO - [2025-04-09T07:22:44.512-0500] {dag.py:4180} INFO - Setting next_dagrun for etl_kaggle_to_postgres_conditional_load to None, run_after=None
+[2025-04-09T07:22:44.540-0500] {processor.py:208} INFO - Processing /home/edwards/Documentos/university/etl/project_linux_repo/LinkedIn-Jobs-Posting/dags/etl_process.py took 0.591 seconds
+[2025-04-09T07:23:18.083-0500] {processor.py:186} INFO - Started process (PID=50444) to work on /home/edwards/Documentos/university/etl/project_linux_repo/LinkedIn-Jobs-Posting/dags/etl_process.py
+[2025-04-09T07:23:18.084-0500] {processor.py:914} INFO - Processing file /home/edwards/Documentos/university/etl/project_linux_repo/LinkedIn-Jobs-Posting/dags/etl_process.py for tasks to queue
+[2025-04-09T07:23:18.087-0500] {logging_mixin.py:190} INFO - [2025-04-09T07:23:18.087-0500] {dagbag.py:588} INFO - Filling up the DagBag from /home/edwards/Documentos/university/etl/project_linux_repo/LinkedIn-Jobs-Posting/dags/etl_process.py
+[2025-04-09T07:23:18.612-0500] {processor.py:925} INFO - DAG(s) 'etl_kaggle_to_postgres_conditional_load' retrieved from /home/edwards/Documentos/university/etl/project_linux_repo/LinkedIn-Jobs-Posting/dags/etl_process.py
+[2025-04-09T07:23:18.631-0500] {logging_mixin.py:190} INFO - [2025-04-09T07:23:18.631-0500] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-09T07:23:18.644-0500] {logging_mixin.py:190} INFO - [2025-04-09T07:23:18.643-0500] {dag.py:4180} INFO - Setting next_dagrun for etl_kaggle_to_postgres_conditional_load to None, run_after=None
+[2025-04-09T07:23:18.677-0500] {processor.py:208} INFO - Processing /home/edwards/Documentos/university/etl/project_linux_repo/LinkedIn-Jobs-Posting/dags/etl_process.py took 0.606 seconds
+[2025-04-09T07:24:22.812-0500] {processor.py:186} INFO - Started process (PID=51357) to work on /home/edwards/Documentos/university/etl/project_linux_repo/LinkedIn-Jobs-Posting/dags/etl_process.py
+[2025-04-09T07:24:22.813-0500] {processor.py:914} INFO - Processing file /home/edwards/Documentos/university/etl/project_linux_repo/LinkedIn-Jobs-Posting/dags/etl_process.py for tasks to queue
+[2025-04-09T07:24:22.815-0500] {logging_mixin.py:190} INFO - [2025-04-09T07:24:22.815-0500] {dagbag.py:588} INFO - Filling up the DagBag from /home/edwards/Documentos/university/etl/project_linux_repo/LinkedIn-Jobs-Posting/dags/etl_process.py
+[2025-04-09T07:24:23.348-0500] {processor.py:925} INFO - DAG(s) 'etl_kaggle_to_postgres_conditional_load' retrieved from /home/edwards/Documentos/university/etl/project_linux_repo/LinkedIn-Jobs-Posting/dags/etl_process.py
+[2025-04-09T07:24:23.368-0500] {logging_mixin.py:190} INFO - [2025-04-09T07:24:23.367-0500] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-09T07:24:23.379-0500] {logging_mixin.py:190} INFO - [2025-04-09T07:24:23.379-0500] {dag.py:4180} INFO - Setting next_dagrun for etl_kaggle_to_postgres_conditional_load to None, run_after=None
+[2025-04-09T07:24:23.406-0500] {processor.py:208} INFO - Processing /home/edwards/Documentos/university/etl/project_linux_repo/LinkedIn-Jobs-Posting/dags/etl_process.py took 0.602 seconds
+[2025-04-09T07:24:54.222-0500] {processor.py:186} INFO - Started process (PID=51596) to work on /home/edwards/Documentos/university/etl/project_linux_repo/LinkedIn-Jobs-Posting/dags/etl_process.py
+[2025-04-09T07:24:54.229-0500] {processor.py:914} INFO - Processing file /home/edwards/Documentos/university/etl/project_linux_repo/LinkedIn-Jobs-Posting/dags/etl_process.py for tasks to queue
+[2025-04-09T07:24:54.232-0500] {logging_mixin.py:190} INFO - [2025-04-09T07:24:54.231-0500] {dagbag.py:588} INFO - Filling up the DagBag from /home/edwards/Documentos/university/etl/project_linux_repo/LinkedIn-Jobs-Posting/dags/etl_process.py
+[2025-04-09T07:24:54.807-0500] {processor.py:925} INFO - DAG(s) 'etl_kaggle_to_postgres_conditional_load' retrieved from /home/edwards/Documentos/university/etl/project_linux_repo/LinkedIn-Jobs-Posting/dags/etl_process.py
+[2025-04-09T07:24:54.839-0500] {logging_mixin.py:190} INFO - [2025-04-09T07:24:54.839-0500] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-09T07:24:54.856-0500] {logging_mixin.py:190} INFO - [2025-04-09T07:24:54.856-0500] {dag.py:4180} INFO - Setting next_dagrun for etl_kaggle_to_postgres_conditional_load to None, run_after=None
+[2025-04-09T07:24:54.891-0500] {processor.py:208} INFO - Processing /home/edwards/Documentos/university/etl/project_linux_repo/LinkedIn-Jobs-Posting/dags/etl_process.py took 0.677 seconds

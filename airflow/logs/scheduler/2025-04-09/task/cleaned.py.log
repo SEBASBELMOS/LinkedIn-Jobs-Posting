@@ -1,0 +1,30 @@
+[2025-04-09T07:21:13.599-0500] {processor.py:186} INFO - Started process (PID=49063) to work on /home/edwards/Documentos/university/etl/project_linux_repo/LinkedIn-Jobs-Posting/dags/task/cleaned.py
+[2025-04-09T07:21:13.601-0500] {processor.py:914} INFO - Processing file /home/edwards/Documentos/university/etl/project_linux_repo/LinkedIn-Jobs-Posting/dags/task/cleaned.py for tasks to queue
+[2025-04-09T07:21:13.604-0500] {logging_mixin.py:190} INFO - [2025-04-09T07:21:13.604-0500] {dagbag.py:588} INFO - Filling up the DagBag from /home/edwards/Documentos/university/etl/project_linux_repo/LinkedIn-Jobs-Posting/dags/task/cleaned.py
+[2025-04-09T07:21:14.910-0500] {processor.py:927} WARNING - No viable dags retrieved from /home/edwards/Documentos/university/etl/project_linux_repo/LinkedIn-Jobs-Posting/dags/task/cleaned.py
+[2025-04-09T07:21:14.929-0500] {processor.py:208} INFO - Processing /home/edwards/Documentos/university/etl/project_linux_repo/LinkedIn-Jobs-Posting/dags/task/cleaned.py took 1.338 seconds
+[2025-04-09T07:21:47.934-0500] {processor.py:186} INFO - Started process (PID=49556) to work on /home/edwards/Documentos/university/etl/project_linux_repo/LinkedIn-Jobs-Posting/dags/task/cleaned.py
+[2025-04-09T07:21:47.935-0500] {processor.py:914} INFO - Processing file /home/edwards/Documentos/university/etl/project_linux_repo/LinkedIn-Jobs-Posting/dags/task/cleaned.py for tasks to queue
+[2025-04-09T07:21:47.937-0500] {logging_mixin.py:190} INFO - [2025-04-09T07:21:47.937-0500] {dagbag.py:588} INFO - Filling up the DagBag from /home/edwards/Documentos/university/etl/project_linux_repo/LinkedIn-Jobs-Posting/dags/task/cleaned.py
+[2025-04-09T07:21:48.678-0500] {processor.py:927} WARNING - No viable dags retrieved from /home/edwards/Documentos/university/etl/project_linux_repo/LinkedIn-Jobs-Posting/dags/task/cleaned.py
+[2025-04-09T07:21:48.691-0500] {processor.py:208} INFO - Processing /home/edwards/Documentos/university/etl/project_linux_repo/LinkedIn-Jobs-Posting/dags/task/cleaned.py took 0.764 seconds
+[2025-04-09T07:22:18.995-0500] {processor.py:186} INFO - Started process (PID=49930) to work on /home/edwards/Documentos/university/etl/project_linux_repo/LinkedIn-Jobs-Posting/dags/task/cleaned.py
+[2025-04-09T07:22:18.996-0500] {processor.py:914} INFO - Processing file /home/edwards/Documentos/university/etl/project_linux_repo/LinkedIn-Jobs-Posting/dags/task/cleaned.py for tasks to queue
+[2025-04-09T07:22:18.999-0500] {logging_mixin.py:190} INFO - [2025-04-09T07:22:18.998-0500] {dagbag.py:588} INFO - Filling up the DagBag from /home/edwards/Documentos/university/etl/project_linux_repo/LinkedIn-Jobs-Posting/dags/task/cleaned.py
+[2025-04-09T07:22:19.481-0500] {processor.py:927} WARNING - No viable dags retrieved from /home/edwards/Documentos/university/etl/project_linux_repo/LinkedIn-Jobs-Posting/dags/task/cleaned.py
+[2025-04-09T07:22:19.487-0500] {processor.py:208} INFO - Processing /home/edwards/Documentos/university/etl/project_linux_repo/LinkedIn-Jobs-Posting/dags/task/cleaned.py took 0.499 seconds
+[2025-04-09T07:22:49.787-0500] {processor.py:186} INFO - Started process (PID=50100) to work on /home/edwards/Documentos/university/etl/project_linux_repo/LinkedIn-Jobs-Posting/dags/task/cleaned.py
+[2025-04-09T07:22:49.788-0500] {processor.py:914} INFO - Processing file /home/edwards/Documentos/university/etl/project_linux_repo/LinkedIn-Jobs-Posting/dags/task/cleaned.py for tasks to queue
+[2025-04-09T07:22:49.791-0500] {logging_mixin.py:190} INFO - [2025-04-09T07:22:49.790-0500] {dagbag.py:588} INFO - Filling up the DagBag from /home/edwards/Documentos/university/etl/project_linux_repo/LinkedIn-Jobs-Posting/dags/task/cleaned.py
+[2025-04-09T07:22:50.389-0500] {processor.py:927} WARNING - No viable dags retrieved from /home/edwards/Documentos/university/etl/project_linux_repo/LinkedIn-Jobs-Posting/dags/task/cleaned.py
+[2025-04-09T07:22:50.399-0500] {processor.py:208} INFO - Processing /home/edwards/Documentos/university/etl/project_linux_repo/LinkedIn-Jobs-Posting/dags/task/cleaned.py took 0.625 seconds
+[2025-04-09T07:23:26.553-0500] {processor.py:186} INFO - Started process (PID=50567) to work on /home/edwards/Documentos/university/etl/project_linux_repo/LinkedIn-Jobs-Posting/dags/task/cleaned.py
+[2025-04-09T07:23:26.554-0500] {processor.py:914} INFO - Processing file /home/edwards/Documentos/university/etl/project_linux_repo/LinkedIn-Jobs-Posting/dags/task/cleaned.py for tasks to queue
+[2025-04-09T07:23:26.557-0500] {logging_mixin.py:190} INFO - [2025-04-09T07:23:26.557-0500] {dagbag.py:588} INFO - Filling up the DagBag from /home/edwards/Documentos/university/etl/project_linux_repo/LinkedIn-Jobs-Posting/dags/task/cleaned.py
+[2025-04-09T07:23:27.061-0500] {processor.py:927} WARNING - No viable dags retrieved from /home/edwards/Documentos/university/etl/project_linux_repo/LinkedIn-Jobs-Posting/dags/task/cleaned.py
+[2025-04-09T07:23:27.067-0500] {processor.py:208} INFO - Processing /home/edwards/Documentos/university/etl/project_linux_repo/LinkedIn-Jobs-Posting/dags/task/cleaned.py took 0.521 seconds
+[2025-04-09T07:24:26.498-0500] {processor.py:186} INFO - Started process (PID=51403) to work on /home/edwards/Documentos/university/etl/project_linux_repo/LinkedIn-Jobs-Posting/dags/task/cleaned.py
+[2025-04-09T07:24:26.505-0500] {processor.py:914} INFO - Processing file /home/edwards/Documentos/university/etl/project_linux_repo/LinkedIn-Jobs-Posting/dags/task/cleaned.py for tasks to queue
+[2025-04-09T07:24:26.508-0500] {logging_mixin.py:190} INFO - [2025-04-09T07:24:26.508-0500] {dagbag.py:588} INFO - Filling up the DagBag from /home/edwards/Documentos/university/etl/project_linux_repo/LinkedIn-Jobs-Posting/dags/task/cleaned.py
+[2025-04-09T07:24:27.002-0500] {processor.py:927} WARNING - No viable dags retrieved from /home/edwards/Documentos/university/etl/project_linux_repo/LinkedIn-Jobs-Posting/dags/task/cleaned.py
+[2025-04-09T07:24:27.011-0500] {processor.py:208} INFO - Processing /home/edwards/Documentos/university/etl/project_linux_repo/LinkedIn-Jobs-Posting/dags/task/cleaned.py took 0.525 seconds

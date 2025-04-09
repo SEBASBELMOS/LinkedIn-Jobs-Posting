@@ -1,0 +1,22 @@
+[2025-04-09T07:23:35.568-0500] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-04-09T07:23:35.581-0500] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: etl_kaggle_to_postgres_conditional_load.branch_cleaning_decision manual__2025-04-09T12:23:13.289942+00:00 [queued]>
+[2025-04-09T07:23:35.588-0500] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: etl_kaggle_to_postgres_conditional_load.branch_cleaning_decision manual__2025-04-09T12:23:13.289942+00:00 [queued]>
+[2025-04-09T07:23:35.589-0500] {taskinstance.py:2867} INFO - Starting attempt 1 of 1
+[2025-04-09T07:23:35.601-0500] {taskinstance.py:2890} INFO - Executing <Task(BranchPythonOperator): branch_cleaning_decision> on 2025-04-09 12:23:13.289942+00:00
+[2025-04-09T07:23:35.611-0500] {standard_task_runner.py:72} INFO - Started process 50707 to run task
+[2025-04-09T07:23:35.616-0500] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'etl_kaggle_to_postgres_conditional_load', 'branch_cleaning_decision', 'manual__2025-04-09T12:23:13.289942+00:00', '--job-id', '8', '--raw', '--subdir', 'DAGS_FOLDER/etl_process.py', '--cfg-path', '/tmp/tmp87gc25r0']
+[2025-04-09T07:23:35.620-0500] {standard_task_runner.py:105} INFO - Job 8: Subtask branch_cleaning_decision
+[2025-04-09T07:23:35.659-0500] {task_command.py:467} INFO - Running <TaskInstance: etl_kaggle_to_postgres_conditional_load.branch_cleaning_decision manual__2025-04-09T12:23:13.289942+00:00 [running]> on host edwards-HP-Laptop-14-dk1xxx
+[2025-04-09T07:23:35.717-0500] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='etl_kaggle_to_postgres_conditional_load' AIRFLOW_CTX_TASK_ID='branch_cleaning_decision' AIRFLOW_CTX_EXECUTION_DATE='2025-04-09T12:23:13.289942+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-04-09T12:23:13.289942+00:00'
+[2025-04-09T07:23:35.718-0500] {taskinstance.py:732} INFO - ::endgroup::
+[2025-04-09T07:23:35.719-0500] {baseoperator.py:423} WARNING - BranchPythonOperator.execute cannot be called outside TaskInstance!
+[2025-04-09T07:23:35.723-0500] {control.py:132} INFO - Cleaning needed: False
+[2025-04-09T07:23:35.724-0500] {python.py:240} INFO - Done. Returned value was: skip_cleaning
+[2025-04-09T07:23:35.724-0500] {branch.py:38} INFO - Branch into skip_cleaning
+[2025-04-09T07:23:35.724-0500] {skipmixin.py:233} INFO - Following branch ('skip_cleaning',)
+[2025-04-09T07:23:35.730-0500] {skipmixin.py:281} INFO - Skipping tasks [('clean_raw_data', -1)]
+[2025-04-09T07:23:35.750-0500] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-04-09T07:23:35.750-0500] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=etl_kaggle_to_postgres_conditional_load, task_id=branch_cleaning_decision, run_id=manual__2025-04-09T12:23:13.289942+00:00, execution_date=20250409T122313, start_date=20250409T122335, end_date=20250409T122335
+[2025-04-09T07:23:35.788-0500] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-04-09T07:23:35.827-0500] {taskinstance.py:3901} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-04-09T07:23:35.829-0500] {local_task_job_runner.py:245} INFO - ::endgroup::
