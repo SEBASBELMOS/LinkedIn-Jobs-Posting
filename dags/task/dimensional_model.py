@@ -16,7 +16,6 @@ def transform_to_dimensional_model(conn_id: str, **context) -> dict:
     hook = PostgresHook(postgres_conn_id=conn_id)
     engine = hook.get_sqlalchemy_engine()
 
-    # Create dimensional_model schema if it doesn't exist
     hook.run("CREATE SCHEMA IF NOT EXISTS dimensional_model")
     log.info("Created dimensional_model schema if it didn't exist")
 
@@ -25,7 +24,6 @@ def transform_to_dimensional_model(conn_id: str, **context) -> dict:
         'industries', 'companies'
     ]
 
-    # Extract data from cleaned schema
     cleaned_dataframes = {}
     chunk_size = 10000
     try:
@@ -58,11 +56,9 @@ def transform_to_dimensional_model(conn_id: str, **context) -> dict:
         jobs_df = cleaned_dataframes['jobs'].copy()
         log.debug(f"Original jobs columns: {jobs_df.columns.tolist()}")
         
-        # Keep necessary columns including salary related columns
         keep_columns = ['job_id', 'company_id', 'title', 'views', 'remote_allowed', 
                         'original_listed_time', 'job_id_modify', 'company_id_modify']
-        
-        # Add salary related columns if they exist
+
         salary_columns = ['normalized_salary', 'currency', 'pay_period']
         for col in salary_columns:
             if col in jobs_df.columns:
@@ -71,7 +67,6 @@ def transform_to_dimensional_model(conn_id: str, **context) -> dict:
         keep_columns = [col for col in keep_columns if col in jobs_df.columns]
         jobs_df = jobs_df[keep_columns].copy()
 
-        # Ensure essential columns exist
         for col in ['job_id', 'company_id', 'title']:
              if col not in jobs_df.columns:
                  log.error(f"Essential column '{col}' missing from jobs data after transformations.")
@@ -85,13 +80,12 @@ def transform_to_dimensional_model(conn_id: str, **context) -> dict:
     if 'benefits' in cleaned_dataframes and not cleaned_dataframes['benefits'].empty:
         benefits_df = cleaned_dataframes['benefits'].copy()
         if 'job_id' in benefits_df.columns:
-            # Data should be pre-grouped from clean task, just need to count
+
             if 'type' in benefits_df.columns and isinstance(benefits_df.iloc[0]['type'], list):
-                # If benefits are already grouped as lists
                 benefits_df['benefits_count'] = benefits_df['type'].apply(len)
                 benefits_count = benefits_df[['job_id', 'benefits_count']]
             else:
-                # Handle potential duplicate job_id entries
+    
                 benefits_df = benefits_df[['job_id']].drop_duplicates()
                 benefits_count = benefits_df.groupby('job_id').size().reset_index(name='benefits_count')
             
@@ -107,7 +101,6 @@ def transform_to_dimensional_model(conn_id: str, **context) -> dict:
         companies_df = cleaned_dataframes['companies'].copy()
         log.debug(f"Original companies columns: {companies_df.columns.tolist()}")
         
-        # Ensure essential columns exist
         for col in ['company_id', 'name']:
             if col not in companies_df.columns:
                 log.error(f"Essential column '{col}' missing from companies data.")
@@ -120,11 +113,10 @@ def transform_to_dimensional_model(conn_id: str, **context) -> dict:
 
     if 'industries' in cleaned_dataframes and not cleaned_dataframes['industries'].empty:
         industries_df = cleaned_dataframes['industries'].copy()
-        # Identify the industry column (could be 'industry' or 'industry_name')
         industry_col = 'industry_name' if 'industry_name' in industries_df.columns else 'industry'
         
         if industry_col in industries_df.columns:
-            industries_df['industry'] = industries_df[industry_col]  # Standardize column name
+            industries_df['industry'] = industries_df[industry_col] 
         
         if 'company_id' not in industries_df.columns:
             log.error("Column 'company_id' missing from industries data.")
@@ -137,7 +129,6 @@ def transform_to_dimensional_model(conn_id: str, **context) -> dict:
 
     log.info("Building dimensional model")
 
-    # --- Dim Company ---
     dim_company_base = transformed_dataframes['companies'].copy()
 
     # Merge Employee Counts
@@ -146,7 +137,6 @@ def transform_to_dimensional_model(conn_id: str, **context) -> dict:
         if 'company_id' in emp_counts_df.columns and 'employee_count' in emp_counts_df.columns:
             emp_counts_to_merge = emp_counts_df[['company_id', 'employee_count']].drop_duplicates(subset=['company_id'], keep='last') # Keep most recent if duplicates
             dim_company_base = dim_company_base.merge(emp_counts_to_merge, on='company_id', how='left')
-            # Ensure numeric type after merge, fillna with 0
             dim_company_base['employee_count'] = pd.to_numeric(dim_company_base['employee_count'], errors='coerce').fillna(0).astype(int)
         else:
             log.warning("Required columns ('company_id', 'employee_count') not found in employee_counts. Setting default.")
@@ -158,7 +148,7 @@ def transform_to_dimensional_model(conn_id: str, **context) -> dict:
     # Merge Industries
     if 'industries' in transformed_dataframes and not transformed_dataframes['industries'].empty:
          industries_df = transformed_dataframes['industries']
-         industry_col = 'industry'  # We standardized this above
+         industry_col = 'industry' 
          if 'company_id' in industries_df.columns and industry_col in industries_df.columns:
              industries_to_merge = industries_df[['company_id', industry_col]].drop_duplicates(subset=['company_id'], keep='first') # Keep first industry if duplicates
              dim_company_base = dim_company_base.merge(industries_to_merge, on='company_id', how='left')
@@ -201,7 +191,6 @@ def transform_to_dimensional_model(conn_id: str, **context) -> dict:
         elif 'state' in dim_location.columns:
             dim_location['location_key'] = dim_location['state']
         else:
-            # Fallback if neither country nor state is available
             dim_location['location_key'] = 'UNK'
     else:
         log.warning("Cannot create Dim Location, required columns missing. Location key will be null in Fact table.")
@@ -237,7 +226,6 @@ def transform_to_dimensional_model(conn_id: str, **context) -> dict:
     # --- Fact Jobs ---
     fact_jobs_base = transformed_dataframes['jobs'].copy()
 
-    # 1. Merge Company Info (includes location columns for next merge)
     company_merge_cols = ['company_id', 'company_key'] + dim_location_cols_existing
     company_merge_cols_in_dim = [col for col in company_merge_cols if col in dim_company.columns]
     fact_jobs_base = fact_jobs_base.merge(
@@ -289,10 +277,10 @@ def transform_to_dimensional_model(conn_id: str, **context) -> dict:
     # Define currency conversion rates if needed
     currency_to_usd = {
         'USD': 1.0,
-        'EUR': 1.09,
+        'EUR': 1.10,
         'GBP': 1.28,
-        'CAD': 0.74,
-        'AUD': 0.67,
+        'CAD': 0.71,
+        'AUD': 0.60,
         'BBD': 0.50
     }
     
@@ -414,10 +402,8 @@ def transform_to_dimensional_model(conn_id: str, **context) -> dict:
     def store_df_in_db(df, table_name, schema, hook, engine):
         if df is not None and not df.empty:
             try:
-                # Drop the table if it exists
                 hook.run(f"DROP TABLE IF EXISTS {schema}.{table_name}")
-                
-                # Create table with proper schema
+
                 df.head(0).to_sql(
                     name=table_name,
                     schema=schema,
@@ -457,12 +443,10 @@ def transform_to_dimensional_model(conn_id: str, **context) -> dict:
             log.warning(f"DataFrame {table_name} is None or empty. Skipping database save.")
             return 0
     
-    # Store each dimensional table
     for table_name, df in dim_tables.items():
         rows_stored = store_df_in_db(df, table_name, 'dimensional_model', hook, engine)
         row_counts[table_name] = rows_stored
     
-    # Also save a temporary copy to disk as backup
     temp_dir = Path(tempfile.mkdtemp())
     saved_paths = {}
     

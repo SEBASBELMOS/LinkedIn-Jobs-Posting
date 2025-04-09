@@ -8,17 +8,7 @@ log = logging.getLogger(__name__)
 
 @task
 def check_if_extraction_needed(conn_id: str, tables: List[str] = None) -> bool:
-    """
-    Verifica si es necesaria la extracción comprobando si las tablas en el esquema 'raw'
-    existen y tienen datos. Devuelve True si se necesita extracción, False si no.
 
-    Args:
-        conn_id: ID de conexión a Postgres
-        tables: Lista de tablas a verificar (por defecto usa las tablas principales)
-
-    Returns:
-        bool: True si alguna tabla falta o está vacía, False si todas existen y tienen datos
-    """
     log.info("Starting task: check_if_extraction_needed")
 
     if tables is None:
@@ -27,13 +17,11 @@ def check_if_extraction_needed(conn_id: str, tables: List[str] = None) -> bool:
 
     hook = PostgresHook(postgres_conn_id=conn_id)
     with hook.get_conn() as conn, conn.cursor() as cursor:
-        # Verificar si el esquema 'raw' existe
         cursor.execute("SELECT schema_name FROM information_schema.schemata WHERE schema_name = 'raw'")
         if not cursor.fetchone():
             log.info("Schema 'raw' does not exist, extraction is needed")
             return True
 
-        # Verificar cada tabla
         for table in tables:
             cursor.execute(f"""
                 SELECT EXISTS (
@@ -76,17 +64,7 @@ def branch_based_on_result(ti, extraction_task_id: str, skip_extraction_task_id:
 
 @task
 def check_if_cleaning_needed(conn_id: str, tables: List[str] = None) -> bool:
-    """
-    Verifica si es necesaria la limpieza comprobando si las tablas en el esquema 'cleaned'
-    existen y tienen datos. Devuelve True si se necesita limpieza, False si no.
 
-    Args:
-        conn_id: ID de conexión a Postgres
-        tables: Lista de tablas a verificar (por defecto usa las tablas principales)
-
-    Returns:
-        bool: True si alguna tabla falta o está vacía, False si todas existen y tienen datos
-    """
     log.info("Starting task: check_if_cleaning_needed")
     if tables is None:
         tables = ['jobs', 'salaries', 'benefits', 'employee_counts', 'industries', 'companies']
@@ -116,15 +94,6 @@ def check_if_cleaning_needed(conn_id: str, tables: List[str] = None) -> bool:
         return False
 
 def branch_based_on_cleaning_result(ti) -> str:
-    """
-    Función para BranchPythonOperator que decide si ejecutar la limpieza.
-
-    Args:
-        ti: Task Instance
-
-    Returns:
-        str: ID de la tarea a ejecutar
-    """
     cleaning_needed = ti.xcom_pull(task_ids="check_if_cleaning_needed")
     if cleaning_needed is None:
         log.error("No XCom value received from 'check_if_cleaning_needed'")

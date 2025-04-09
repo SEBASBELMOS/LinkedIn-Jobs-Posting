@@ -50,7 +50,6 @@ def create_postgres_schemas(conn_id: str):
 def load_kaggle_data_to_raw(conn_id: str, kaggle_dataset: str = "arshkon/linkedin-job-postings"):
     log.info("Starting task: load_kaggle_data_to_raw")
     hook = PostgresHook(postgres_conn_id=conn_id)
-    # Get engine for pandas.to_sql
     engine = hook.get_sqlalchemy_engine()
     conn = None # Initialize conn to None
 
