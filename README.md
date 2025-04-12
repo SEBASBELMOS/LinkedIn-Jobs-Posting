@@ -48,88 +48,38 @@ The dataset is sourced from [LinkedIn Job Postings on Kaggle](https://www.kaggle
 | Folder/File                  | Description                                  |
 |------------------------------|----------------------------------------------|
 | **assets/**                  | Static resources (charts, images, etc.)      |
-| **functions/**               | Utility functions                            |
-| ├── **db_connection/**       | Database connection module                   |
-| │   ├── `connection.py`   | Connects to AWS RDS (Postgres DB) using SQLAlchemy           |
-| │   ├── `clean_connection.py`   | Connects to AWS RDS (Postgres DB) using SQLAlchemy - Clean DB          |
-| **env/**                     | Environment variables (in `.gitignore`)      |
-| ├── `.env`                   | Stores database credentials                  |
-| ├── `linkedin_postings_clean_.env`                   | Stores cleaned database credentials                  |
+| **airflow/**                  | Apache Airflow Resources and Configuration files     |
+├──| **dags/**             | Stores Apache Airflow Dags |
+├──├──├── **tasks/**  | Stores Apache Airflow Tasks that will be used by our dag  |  
 | **notebooks/**               | Jupyter Notebooks for ETL                    |
 | ├── `01_raw-data.ipynb`      | Raw data ingestion                           |
 | ├── `02_read_data.ipynb` |     Exploratory Data Analysis (EDA)      |
 | ├── `03_clean_transform.ipynb` | Data cleaning and transformation                       |
-| **pdf/**                     | Project documentation PDFs                   |
-| ├── `ETL Project - First delivery.pdf` | Instructions for the project       |
-| **pyproject.toml**           | Poetry dependency management file            |
+| ├── `04_api_eda.ipynb` | Exploratory Data Analysis (EDA) for the API                       |
+| **docs/**                     | Documentation, Guides and workshop PDFs                   |
+| **pbi/**               | Power BI files (ignored in .gitignore) |
 | **README.md**                | This file                                    |
 
 ## Tools and Libraries
 
 - **Programming Language:** Python 3.13.1 -> [Download](https://www.python.org/downloads/)
 - **Data Handling:** pandas -> [Docs](https://pandas.pydata.org/)
-- **Database:** AWS RDS Free Tier (PostgreSQL) -> [Open here](https://aws.amazon.com/rds/free/)
+- **Database:**Google Cloud Platform (PostgreSQL) -> [Open here](https://cloud.google.com/sql/docs/postgres)
 - **Database Interaction:** SQLAlchemy with PyMySQL -> [SQLAlchemy Docs](https://docs.sqlalchemy.org/), [PyMySQL Docs](https://pymysql.readthedocs.io/)
 - **Visualisation:** Power BI Desktop -> [Download](https://www.microsoft.com/es-es/power-platform/products/power-bi/desktop)
 - **Environment:** Jupyter Notebook -> [VSCode tool used](https://code.visualstudio.com/docs/datascience/jupyter-notebooks)
 
-Dependencies are managed in `pyproject.toml`.
+Dependencies are managed in `requirements.txt`.
 
 ## Installation and Setup
 
 1. **Clone the Repository:**
    ```bash
    git clone https://github.com/SEBASBELMOS/LinkedIn-Jobs-Posting.git
-   cd project_etl
+   cd LinkedIn-Jobs-Posting
    ````
 
-2. **Installing the dependencies with _Poetry_**
-    - Windows: 
-        - In Powershell, execute this command: 
-            ```powershell
-            (Invoke-WebRequest -Uri https://install.python-poetry.org -UseBasicParsing).Content | py -
-            ```
-            <img src="https://github.com/SEBASBELMOS/LinkedIn-Jobs-Posting/blob/main/assets/poetry_installation.png" width="600"/>
-        - Press Win + R, type _sysdm.cpl_, and press **Enter**. 
-        - Go to the _Advanced_ tab, select _environment variable_.
-        - Under System variables, select Path → Click Edit.
-        - Click _Edit_ and set the path provided during the installation in **PATH** so that the `poetry` command works. ("C:\Users\username\AppData\Roaming\Python\Scripts")
-        - Restart Powershell and execute _poetry --version_.
-
-        
-    - Linux
-        - In a terminal, execute this command:
-            ```bash
-            curl -sSL https://install.python-poetry.org | python3 -
-            ```
-            <img src="https://github.com/SEBASBELMOS/LinkedIn-Jobs-Posting/blob/main/assets/poetry_linux.png" width="600"/>
-        -  Now, execute:
-            ```bash
-            export PATH = "/home/user/.locar/bin:$PATH"
-            ```
-        -Finally, restart the terminal and execute _poetry --version_.
-
-
-        <img src="https://github.com/SEBASBELMOS/LinkedIn-Jobs-Posting/blob/main/assets/poetry_linux_installed.png" width="400"/>
-
-3. **Poetry Shell**
-    - Enter the Poetry shell in VSCode with _poetry shell_.
-    - Then, execute _poetry init_, it will create a file called _pyproject.toml_
-    - To add all the dependencies, execute this: 
-        ```bash
-        poetry add pandas matplotlib psycopg2-binary sqlalchemy python-dotenv seaborn ipykernel dotenv
-        ```
-    - Install the dependencies with: 
-        ```bash
-        poetry install
-        ```
-        In case of error with the .lock file, just execute _poetry lock_ to fix it.
-    - Create the kernel with this command (You must choose this kernel when running the notebooks):
-        ```bash
-        poetry run python -m ipykernel install --user --name project_etl --display-name "linkedin_postings_etl"
-        ```
-
-4.  **Virtual Environment (This must be done in Ubuntu or WSL in case you do not want to use Poetry)**
+2.  **Virtual Environment (This must be done in Ubuntu or WSL)**
     - Create virtual environment.
         ```bash
         python3 -m venv venv
@@ -145,8 +95,7 @@ Dependencies are managed in `pyproject.toml`.
         pip install -r requirements.txt 
         ```
 
-
-5. **AWS RDS Free Tier / Supabase**
+3. **AWS RDS Free Tier / Supabase**
     We decided to use AWS RDS instead of Supabase because this was an amazing skill to add to our portfolios and it provides wider options when it comes to storage and availability.
     
     Amazon RDS (Relational Database Service) hosts our database, running PostgreSQL 16.3, with a size of approximately 449 MB (originally 414 MB locally). Follow these steps to create and connect to it.
@@ -185,35 +134,22 @@ Dependencies are managed in `pyproject.toml`.
         Username: postgres (or any other user created).
         Password: Set during project creation (e.g., password).
 
-6. **Database Google Cloud Platform in case you do not want to use Supabase or AWS RDS**
+4. **Database Google Cloud Platform in case you do not want to use Supabase or AWS RDS**
     > To create the databases in GCP, you can follow this [guide](https://github.com/SEBASBELMOS/LinkedIn-Jobs-Posting/blob/main/docs/guides/google_cloud_config.md)
 
     - Use the `public IP` for connections, and ensure the IP `0.0.0.0/0` is added to authorised networks for testing.
-
-7. **Enviromental variables**
-    >Realise this in VS Code.
-
-    To establish a connection with the database, we use a module called _connection.py_ and _clean\_connection_. These Python scripts retrieves a file containing our environment variables. Here’s how to create it:
-    1. Inside the cloned repository, create a new directory named *env/*.
-    2. Within that directory, create a file called *.env*.
-    3. In the *.env file*, define the following six environment variables (without double quotes around values):
-        ```python
-        PG_HOST = #host address, e.g. localhost or 127.0.0.1
-        PG_PORT = #PostgreSQL port, e.g. 5432
-
-        PG_USER = #your PostgreSQL user
-        PG_PASSWORD = #your user password
-        
-        PG_DRIVER = postgresql+psycopg2
-        PG_DATABASE = #your database name, e.g. postgres
-        ```
-
 
 ---
 
 ## Workflow
 
 <img src="https://github.com/SEBASBELMOS/LinkedIn-Jobs-Posting/blob/main/assets/etl_pipeline.png" width="600"/>
+
+## Dimensional Model
+
+<img src="https://github.com/SEBASBELMOS/workshop-002/blob/main/assets/dim_model.png width="500"/>
+
+---
 
 ### Notebooks
 
@@ -223,7 +159,7 @@ Dependencies are managed in `pyproject.toml`.
     - Select the Python kernel.
     - Run to download the dataset and load it into PostgreSQL.
 
-2. ** Read data and Exploratory Data Analysis (notebooks\02_read_data.ipynb):**
+2. **Read data and Exploratory Data Analysis (notebooks\02_read_data.ipynb):**
     - Open `notebooks/02_read_data.ipynb`.
     - Explore the Data:
         - Review the structure, data types, and sample entries.
@@ -236,6 +172,11 @@ Dependencies are managed in `pyproject.toml`.
     - Perform data cleaning, handle missing values, and transform timestamps/salaries.
     - Load clean data into a new DB in PostgreSQL.
 
+4. **API Exploratory Data Analysis(notebooks\04_api_eda.ipynb)**
+    - Open `notebooks/04_api_eda.ipynb`.
+    - Review the structure, data types and entries.
+    - Analysing missing values and inconsistencies.
+    - Generate summary statistics and visualise distributions and extract insights.
 ---
 
 ## Airflow Pipeline
@@ -262,7 +203,7 @@ Ensure that Apache Airflow can access the modules in the `src` directory by spec
 
 ---
 
-## Power BI Connection (Not necessary)
+## Power BI Connection
 1. Open Power BI Desktop and create a new dashboard. 
 2. Select the _Get data_ option, then choose the "_PostgreSQL Database_" option.
 
@@ -280,7 +221,7 @@ Ensure that Apache Airflow can access the modules in the `src` directory by spec
     
     <img src="https://github.com/SEBASBELMOS/LinkedIn-Jobs-Posting/blob/main/assets/tables.png" width="200"/>
 
-- Open the Power BI Visualisation [here](https://app.powerbi.com/view?r=eyJrIjoiMzk3ZTA5YzEtYjkwNS00N2FjLWE5NDEtMmMzOWZkZTEzN2RkIiwidCI6IjY5M2NiZWEwLTRlZjktNDI1NC04OTc3LTc2ZTA1Y2I1ZjU1NiIsImMiOjR9)
+- Open my Power BI Visualisation [here](https://app.powerbi.com/view?r=eyJrIjoiYzVmMGFjYTktNzE2Ni00MWNhLWE2ODktOWMwZTY2OTdiMGU5IiwidCI6IjY5M2NiZWEwLTRlZjktNDI1NC04OTc3LTc2ZTA1Y2I1ZjU1NiIsImMiOjR9)
 
 ---
 
