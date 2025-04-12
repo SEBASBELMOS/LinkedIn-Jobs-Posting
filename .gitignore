@@ -1,16 +1,10 @@
-data
-
 docs/pdf/weekly
-
-.env
-
-poetry.lock
-
 pbi/
-
+# Airflow
+/airflow/
+/airflow/logs/
 __pycache__/
 venv/
-notebooks/raw.ipynb
-temp/
-
+airflow_env
 logs/
+data/
