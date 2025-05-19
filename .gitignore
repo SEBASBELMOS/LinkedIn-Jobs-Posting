@@ -19,3 +19,4 @@ webserver_config.py
 standalone_admin_password.txt
 /logs
 /env
+/data
