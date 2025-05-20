@@ -23,3 +23,6 @@ standalone_admin_password.txt
 /data_cleaned
 airflow-webserver.pid
 /notebooks/transform_csv.ipynb
+
+data/temp
+usajobs_temp*
