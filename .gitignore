@@ -20,3 +20,6 @@ standalone_admin_password.txt
 /logs
 /env
 /data
+/data_cleaned
+airflow-webserver.pid
+/notebooks/transform_csv.ipynb
