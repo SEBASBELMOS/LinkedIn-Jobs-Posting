@@ -21,3 +21,4 @@ standalone_admin_password.txt
 /env
 /data
 /data_cleaned
+airflow-webserver.pid
