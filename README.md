@@ -5,8 +5,8 @@ This project simulates a real-world exercise for a Data Engineer role interview.
 
 - Extract data from CSV files (LinkedIn) and an API (USAJOBS), and migrate it into a relational database (PostgreSQL - AWS RDS).
 - Clean, transform, and combine data from both sources based on defined criteria.
-- Visualize metrics using Python libraries to create insightful charts and analyze trends in job postings.
-- Implement a real-time data pipeline using Apache Kafka to stream and analyze job posting data, with a live dashboard.
+- Visualise metrics using Python libraries to create insightful charts and analyse trends in job postings.
+- Implement a real-time data pipeline using Apache Kafka to stream and analyse job posting data, with a live dashboard.
 
 ## Dataset
 
@@ -50,7 +50,7 @@ The USAJOBS dataset is sourced via the [USAJOBS API](https://developer.usajobs.g
 - `PositionTitle`: Job title (VARCHAR).
 - `Location`, `City`, `State`, `Country`: Job location details (VARCHAR).
 - `Latitude`, `Longitude`: Geographic coordinates (FLOAT, nullable).
-- `Organization`, `Department`: Organization and department names (VARCHAR).
+- `Organization`, `Department`: Organisation and department names (VARCHAR).
 - `MinSalary`, `MaxSalary`, `SalaryInterval`: Salary details (FLOAT, VARCHAR).
 - `JobCategory`, `JobGrade`: Job category and grade (VARCHAR).
 - `Schedule`, `OfferingType`: Work schedule and offering type (e.g., Full-time, Permanent; VARCHAR).
@@ -96,7 +96,7 @@ The USAJOBS dataset is sourced via the [USAJOBS API](https://developer.usajobs.g
 | ├── `04_api.ipynb`           | API data extraction and EDA (USAJOBS)       |
 | ├── `05_merge-data.ipynb`    | Merge LinkedIn and USAJOBS data             |
 | ├── `dimensional_model.ipynb`| Dimensional model creation                  |
-| ├── `final.ipynb`            | Final analysis and visualizations           |
+| ├── `final.ipynb`            | Final analysis and visualisations           |
 | ├── `transform_csv.ipynb`    | CSV transformation scripts                  |
 | **README.md**                | This file                                    |
 | **settings.py**              | Project settings                             |
@@ -113,7 +113,7 @@ The USAJOBS dataset is sourced via the [USAJOBS API](https://developer.usajobs.g
 - **Database:** Google Cloud Platform (PostgreSQL) -> [Open here](https://cloud.google.com/sql/docs/postgres)
 - **Database Interaction:** SQLAlchemy with PyMySQL -> [SQLAlchemy Docs](https://docs.sqlalchemy.org/), [PyMySQL Docs](https://pymysql.readthedocs.io/)
 - **API Interaction:** requests, urllib3 -> [requests Docs](https://docs.python-requests.org/)
-- **Visualization:** Power BI Desktop -> [Download](https://www.microsoft.com/es-es/power-platform/products/power-bi/desktop), Seaborn, Matplotlib -> [Seaborn Docs](https://seaborn.pydata.org/), [Matplotlib Docs](https://matplotlib.org/), Plotly -> [Plotly Docs](https://plotly.com/python/)
+- **Visualisation:** Power BI Desktop -> [Download](https://www.microsoft.com/en-gb/power-platform/products/power-bi/desktop), Seaborn, Matplotlib -> [Seaborn Docs](https://seaborn.pydata.org/), [Matplotlib Docs](https://matplotlib.org/), Plotly -> [Plotly Docs](https://plotly.com/python/)
 - **Workflow Management:** Apache Airflow -> [Docs](https://airflow.apache.org/)
 - **Real-Time Processing:** Apache Kafka -> [Docs](https://kafka.apache.org/documentation/), kafka-python
 - **Dashboard:** Dash, dash-bootstrap-components -> [Dash Docs](https://dash.plotly.com/)
@@ -143,7 +143,7 @@ The USAJOBS dataset is sourced via the [USAJOBS API](https://developer.usajobs.g
         ```
 
 3. **AWS RDS Free Tier / Supabase**
-    We decided to use AWS RDS instead of Supabase because this was an amazing skill to add to our portfolios and it provides wider options when it comes to storage and availability.
+    We decided to use AWS RDS instead of Supabase because this was an amazing skill to add to our portfolios, and it provides wider options when it comes to storage and availability.
     
     Amazon RDS (Relational Database Service) hosts our database, running PostgreSQL 16.3, with a size of approximately 449 MB (originally 414 MB locally). Follow these steps to create and connect to it:
     
@@ -183,7 +183,7 @@ The USAJOBS dataset is sourced via the [USAJOBS API](https://developer.usajobs.g
 
 4. **Database Google Cloud Platform (Alternative to AWS RDS or Supabase)**
     > To create the databases in GCP, follow this [guide](https://github.com/SEBASBELMOS/LinkedIn-Jobs-Posting/blob/main/docs/guides/google_cloud_config.md).
-    - Use the `public IP` for connections, and ensure the IP `0.0.0.0/0` is added to authorized networks for testing.
+    - Use the `public IP` for connections, and ensure the IP `0.0.0.0/0` is added to authorised networks for testing.
 
 5. **Kafka Setup**
     - Ensure Docker and Docker Compose are installed.
@@ -226,12 +226,12 @@ The USAJOBS dataset is sourced via the [USAJOBS API](https://developer.usajobs.g
 4. **Clean and Transform Combined Data (notebooks/03_clean-transform.ipynb):**
     - Open `notebooks/03_clean-transform.ipynb`.
     - Combine and clean LinkedIn and USAJOBS data (~131,930 records).
-    - Standardize columns and handle missing values.
+    - Standardise columns and handle missing values.
 
 5. **API Data Extraction and EDA (notebooks/04_api.ipynb):**
     - Open `notebooks/04_api.ipynb`.
     - Extract USAJOBS API data and save to `data_api/usajobs_data.csv`.
-    - Perform EDA and normalize salaries.
+    - Perform EDA and normalise salaries.
 
 6. **Merge Data (notebooks/05_merge-data.ipynb):**
     - Open `notebooks/05_merge-data.ipynb`.
@@ -244,7 +244,7 @@ The USAJOBS dataset is sourced via the [USAJOBS API](https://developer.usajobs.g
 
 8. **Final Analysis (notebooks/final.ipynb):**
     - Open `notebooks/final.ipynb`.
-    - Generate final visualizations and insights.
+    - Generate final visualisations and insights.
 
 9. **Transform CSV (notebooks/transform_csv.ipynb):**
     - Open `notebooks/transform_csv.ipynb`.
@@ -252,15 +252,15 @@ The USAJOBS dataset is sourced via the [USAJOBS API](https://developer.usajobs.g
 
 ---
 
-## Visualizations
+## Visualisations
 
-The project includes visualizations to analyze job posting trends, generated in the notebooks and summarized in `docs/pdf/ETL Project - First delivery.pdf`:
+The project includes visualisations to analyse job posting trends, generated in the notebooks and summarised in `docs/pdf/ETL Project - First delivery.pdf`:
 
 - **Job Postings Over Time**: Shows a peak of 93,000 job postings in 2025.
 - **Job Counts by Work Type**: Highlights distribution of work types, with many "unknown" entries.
-- **Remote vs. On-Site Job Postings**: Analyzes remote versus on-site job proportions.
+- **Remote vs. On-Site Job Postings**: Analyses remote versus on-site job proportions.
 - **Salary Average by Experience Level**: Displays average salaries (~90K-91.9K USD) with little variation.
-- **Salary Distribution**: Visualizes normalized salary distributions.
+- **Salary Distribution**: Visualises normalised salary distributions.
 
 ### **Real-Time Dashboard**
 - A Dash-based dashboard (`kafka/dash_app/dashboard.py`) provides live insights from Kafka streams:
@@ -315,7 +315,7 @@ Ensure Apache Airflow can access the `src` directory by updating the `plugins_fo
 
     <img src="https://github.com/SEBASBELMOS/LinkedIn-Jobs-Posting/blob/main/assets/tables.png" width="200"/>
 
-- Open the Power BI Visualization [here](https://app.powerbi.com/view?r=eyJrIjoiYzVmMGFjYTktNzE2Ni00MWNhLWE2ODktOWMwZTY2OTdiMGU5IiwidCI6IjY5M2NiZWEwLTRlZjktNDI1NC04OTc3LTc2ZTA1Y2I1ZjU1NiIsImMiOjR9).
+- Open the Power BI Visualisation [here](https://app.powerbi.com/view?r=eyJrIjoiYzVmMGFjYTktNzE2Ni00MWNhLWE2ODktOWMwZTY2OTdiMGU5IiwidCI6IjY5M2NiZWEwLTRlZjktNDI1NC04OTc3LTc2ZTA1Y2I1ZjU1NiIsImMiOjR9).
 
 ---
 
