@@ -14,11 +14,6 @@ log = logging.getLogger(__name__)
 
 @task
 def create_project_etl_schema() -> None:
-    """
-    1) Conecta a la DB 'postgres' para ejecutar CREATE DATABASE ETL_DATABASE
-    2) Conéctate a ETL_DATABASE y crea los esquemas raw, cleaned, dimensional_model
-    """
-    # 1) Conectar a la base 'postgres' del sistema para crear la base deseada
     conn = psycopg2.connect(
         host=POSTGRES_HOST,
         port=POSTGRES_PORT,
@@ -37,7 +32,6 @@ def create_project_etl_schema() -> None:
             log.info(f"Base de datos '{ETL_DATABASE}' ya existe.")
     conn.close()
 
-    # 2) Conectar ya a la BD recién creada para montar los esquemas
     conn2 = psycopg2.connect(
         host=POSTGRES_HOST,
         port=POSTGRES_PORT,
@@ -51,5 +45,6 @@ def create_project_etl_schema() -> None:
         cur.execute("CREATE SCHEMA IF NOT EXISTS raw;")
         cur.execute("CREATE SCHEMA IF NOT EXISTS cleaned;")
         cur.execute("CREATE SCHEMA IF NOT EXISTS dimensional_model;")
+        cur.execute("CREATE SCHEMA IF NOT EXISTS merge;")
     conn2.close()
     log.info("Tarea create_project_etl_schema completada.")
