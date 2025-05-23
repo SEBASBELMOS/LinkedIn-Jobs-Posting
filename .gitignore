@@ -23,6 +23,8 @@ standalone_admin_password.txt
 /data_cleaned
 airflow-webserver.pid
 /notebooks/transform_csv.ipynb
+/notebooks/dimensional_model.ipynb
+/notebooks/analisis_final.ipynb
 
 data/temp
 usajobs_temp*
