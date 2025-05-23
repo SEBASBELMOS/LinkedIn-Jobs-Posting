@@ -1,0 +1,49 @@
+{
+  "count": 3025,
+  "last_seen_processing_time": "2025-05-22T00:14:58.629653",
+  "avg_salary_in_window": 26108.910355371903,
+  "top_industries": [
+    {
+      "industry": "other",
+      "count": 816
+    },
+    {
+      "industry": "healthcare & life sciences",
+      "count": 527
+    },
+    {
+      "industry": "manufacturing",
+      "count": 427
+    },
+    {
+      "industry": "technology & it",
+      "count": 301
+    },
+    {
+      "industry": "retail & consumer goods",
+      "count": 246
+    }
+  ],
+  "top_states": [
+    {
+      "state": "CA",
+      "count": 414
+    },
+    {
+      "state": "OTHER",
+      "count": 315
+    },
+    {
+      "state": "TX",
+      "count": 186
+    },
+    {
+      "state": "NY",
+      "count": 138
+    },
+    {
+      "state": "PA",
+      "count": 125
+    }
+  ]
+}

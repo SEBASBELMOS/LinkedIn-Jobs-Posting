@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.2.1
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+
+  kafka:
+    image: confluentinc/cp-kafka:7.2.1
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+
+  producer:
+    build:
+      context: ./producer
+    working_dir: /app
+    environment:
+      - DATABASE_URL=postgresql://root:root@host.docker.internal:5432/linkedin
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - kafka
+
+  consumer:
+    build:
+      context: ./consumer
+    working_dir: /app
+    volumes:
+      - ./data_json:/app/data
+    environment:
+      - DATABASE_URL=postgresql://root:root@host.docker.internal:5432/linkedin
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - kafka
+
+  dash:
+    build:
+      context: ./dash_app
+    working_dir: /app
+    ports:
+      - "8050:8050"
+    volumes:
+      - ./data_json:/app/data
+    depends_on:
+      - consumer

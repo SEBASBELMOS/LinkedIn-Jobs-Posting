@@ -1,0 +1,71 @@
+/* assets/linkedin_style.css */
+
+body {
+    font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: rgba(0,0,0,0.9); /* Color de texto principal de LinkedIn */
+    background-color: #F3F2EF; /* Color de fondo de página de LinkedIn */
+}
+
+/* Estilo para el título principal de la aplicación */
+.app-title {
+    color: #0A66C2; /* Azul LinkedIn */
+    font-weight: 600; /* Un poco más grueso */
+    margin-bottom: 0; /* Ajustar si es necesario */
+}
+
+/* Estilo para el texto del contador en vivo */
+.live-count-text {
+    font-size: 1rem;
+    text-align: right;
+}
+
+.live-count-text span {
+    display: block; /* Hace que cada span ocupe una nueva línea si es necesario */
+}
+
+/* Estilo para los títulos dentro de las tarjetas */
+.card-title-custom {
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: rgba(0,0,0,0.9);
+}
+
+/* Ajustes para las tarjetas de Bootstrap */
+.card {
+    border: 1px solid #e0e0e0; /* Borde sutil */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05); /* Sombra ligera */
+}
+
+.card-header {
+    background-color: #ffffff; /* Fondo blanco para cabeceras de tarjeta */
+    border-bottom: 1px solid #e0e0e0;
+}
+
+/* Para asegurar que los gráficos llenen el card-body */
+.card-body .dash-graph {
+    height: 100%;
+    width: 100%;
+}
+
+/* Ocultar el logo de "Plotly" si `config={'displayModeBar': False}` no es suficiente o para otros casos */
+.modebar--hover {
+    display: none !important;
+}
+
+/* Puedes añadir más estilos específicos aquí */
+/* Por ejemplo, para cambiar el color de las barras por defecto si no se define en Python */
+/* .plotly .trace.bars rect {
+    fill: #0A66C2 !important; 
+} */
+
+/* Estilo para los ejes de los gráficos */
+.plotly g.xtick text, .plotly g.ytick text {
+    font-family: "Source Sans Pro", sans-serif !important;
+    fill: rgba(0,0,0,0.7) !important; /* Color de texto de los ejes un poco más claro */
+}
+
+.plotly .yaxislayer-above .ytitle, .plotly .xaxislayer-above .xtitle {
+    font-family: "Source Sans Pro", sans-serif !important;
+    fill: rgba(0,0,0,0.9) !important; /* Color de los títulos de los ejes */
+    font-weight: 500 !important;
+}
